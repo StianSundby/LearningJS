@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+</head>
+<body>
+    <button style="text-decoration: none;"><a href="index.html">tilbake</a></button>
+    <h1 style="border-bottom: 3px solid black;">Svaret er veldig stort</h1>
+    <h3 onclick="svarA()" id="a">a. Veldig stort</h3>
+    <h3 onclick="svarB()" id="b">b. En elefant</h3>
+    <h1 onclick="svarC()" id="c">c. SVARET</h1>
+    <h3 onclick="svarD()" id="d">d. ikke nok informasjon</h3>
+    <button onclick="reset()">Reset</button>
+
+    <script>
+        function svarA() {
+            document.getElementById('a').innerHTML = 'Du tar ikke feil';
+            svarB = false;
+            svarC = false;
+            svarD = false;
+        }
+        function svarB() {
+            document.getElementById('b').innerHTML = 'Den er jo forsåvidt det ja';
+            svarA = false;
+            svarC = false;
+            svarD = false;
+        }
+        function svarC() {
+            document.getElementById('c').innerHTML = 'Jaa, kan jo ikke si noe imot den...';
+            svarA = false;
+            svarB = false;
+            svarD = false;
+        }
+        function svarD() {
+            document.getElementById('d').innerHTML = 'Det er objektivt feil';
+            svarA = false;
+            svarB = false;
+            svarC = false;
+        }
+        function reset() {
+            window.location.reload(true);
+        }
+    </script>
+</body>
+</html>

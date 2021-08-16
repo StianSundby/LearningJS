@@ -1,0 +1,28 @@
+.item-a {
+    grid-area: buttonone;
+  }
+  .item-b {
+    grid-area: buttontwo;
+  }
+  .item-c {
+    grid-area: buttonthree;
+  }
+  .item-d {
+    grid-area: buttonfour;
+  }
+  .item-e {
+      grid-area: buttonfive;
+  }
+  .item-f {
+      grid-area: buttonsix;
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: 50px 50px;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "buttonone buttontwo"
+      "buttonthree buttonfour"
+      "buttonfive buttonsix";
+  }
