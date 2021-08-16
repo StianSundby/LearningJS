@@ -1,42 +1,38 @@
-.a {
-  grid-area: buttonone;
-}
-.b {
-  grid-area: buttontwo;
-}
-.c {
-  grid-area: buttonthree;
-}
-.d {
-  grid-area: buttonfour;
-}
-.e {
-    grid-area: buttonfive;
-}
-.f {
-    grid-area: buttonsix;
-}
-  
-.container {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-  grid-template-areas: 
-    "buttonone buttontwo"
-    "buttonthree buttonfour"
-    "buttonfive buttonsix";
+.title{
+  margin-bottom: 10px;
+  text-align:center;
+  width: 210px;
+  color:green;
+  border: solid black 2px;
 }
 
-.button {
-  text-align: center;
-
+button {
+  background-color:rgb(124, 124, 124);
+  color: black;
+  border: solid black 2px;
+  display: block;
+  width:10em;
+  height: 5em;
+  align-items: center;
+}
+button:hover {
+  background-color:rgb(83, 83, 83);
+}
+.linkInsideButton {
+  display:inline-block;
+  width:100%;
+  height:100%;
 }
 
-.a {
+a {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  color: rgb(255, 255, 255);
   text-decoration: none;
 }
 
-.button {
-  width: 100px;
-  height: 50px;
+table{ 
+  align-content: center !important;
 }
