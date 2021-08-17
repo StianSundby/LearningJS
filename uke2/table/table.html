@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    test
+    <script>
+        function changeText(text){
+            var otilx=document.getElementById('text-display');
+            otilx.innerHTML="x";
+        }
+        function defaultText(){
+            var otilx=document.getElementById('text-display');
+            otilx.innerHTML="o";
+        }
+    </script>
+    <div id="text">
+        <table style="font-size: 5em; font-family: 'Courier New', Courier, monospace; line-height: 0.5;">
+            <tr>
+                <td onmouseover="changeText('x')" onmouseout="defaultText()">o</td>
+                <td>o</td>
+                <td>o</td>
+            </tr>
+            <tr>
+                <td>o</td>
+                <td>o</td>
+                <td>o</td>
+            </tr>
+            <tr>
+                <td>o</td>
+                <td>o</td>
+                <td>o</td>
+            </tr>
+        </table>
+    </div>
 </body>
+
 </html>

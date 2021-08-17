@@ -35,3 +35,7 @@ a:hover {
   color: rgb(255, 255, 255);
   text-decoration: none;
 }
+
+a.linkInsideButton{
+  align-content: center !important;
+}

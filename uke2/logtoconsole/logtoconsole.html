@@ -4,9 +4,75 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>console</title>
 </head>
 <body>
-    test
+    <h1>Event handlers test</h1>
+    <br><br>
+    <p>Type something!</p>
+    <input type="text" onchange="testOnChange()" oninput="testOnInput()"/><br>
+    <input type="text" onkeydown="testOnKeyDown()" /><br>
+    <input type="text" onkeypress="testOnKeyPress()"/>
+    <br><br><br><br>
+    <button onclick="testOnClick()">Click me!</button>
+    <button ondblclick="testOnDblclick()">Doubleclick me!</button>
+    <button oncontextmenu="testOnContextMenu()">Rightclick me!</button>
+    <br><br><br>
+    <h3 style="border: 1px solid black; width: 10em;" onmouseover="testOnMouseOver()" onmouseout="testOnMouseOut()">Hover me!</h3>
+    <br><br>
+    <p>Log (you can also see it in the (f12) console log)</p>
+    <h2 id="info"></h2>
+
+    <script>
+        function testOnLoad(){
+            document.getElementById('info').innerHTML += '<li>onload</li>'
+            console.log('onLoad')
+        }
+
+        function testOnChange(){
+            document.getElementById('info').innerHTML += '<li>onchange</li>';
+            console.log('onChange')
+        }
+
+        function testOnInput(){
+            document.getElementById('info').innerHTML += '<li>oninput</li>';
+            console.log('onInput')
+        }
+
+        function testOnClick(){
+            document.getElementById('info').innerHTML += '<li>onclick</li>';
+            console.log('onClick')
+        }
+
+        function testOnDblclick(){
+            document.getElementById('info').innerHTML += '<li>ondblclick</li>';
+            console.log('onDblclick')
+        }
+
+        function testOnContextMenu(){
+            document.getElementById('info').innerHTML += '<li>oncontextmenu</li>';
+            console.log('onContextMenu')
+        }
+
+        function testOnKeyDown(){
+            document.getElementById('info').innerHTML += '<li>onkeydown</li>';
+            console.log('onKeyDown')
+        }
+
+        function testOnKeyPress(){
+            document.getElementById('info').innerHTML += '<li>onkeypress</li>';
+            console.log('onKeyPress')
+        }
+
+        function testOnMouseOver(){
+            document.getElementById('info').innerHTML += '<li>onmouseover</li>';
+            console.log('onMouseOver')
+        }
+
+        function testOnMouseOut(){
+            document.getElementById('info').innerHTML += '<li>onmouseout</li>';
+            console.log('onMouseOut')
+        }
+    </script>
 </body>
 </html>
