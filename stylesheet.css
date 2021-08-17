@@ -1,8 +1,8 @@
 .title{
-  margin-bottom: 10px;
+  margin-top: 1em;
   text-align:center;
-  width: 210px;
-  color:green;
+  width: 31.5em;
+  color:white;
   border: solid black 2px;
 }
 
@@ -31,8 +31,4 @@ a {
 a:hover {
   color: rgb(255, 255, 255);
   text-decoration: none;
-}
-
-table{ 
-  align-content: center !important;
 }

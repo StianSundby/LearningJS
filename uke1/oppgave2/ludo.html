@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        @media only screen and (min-aspect-ratio: 1/1) {
+            svg {
+                height: 95vh;
+                width: 80vw;
+            }
+        }
+        @media only screen and (max-aspect-ratio: 1/1) {
+            svg {
+                width: 95vw;
+                height: 80vh;
+            }
+        }
+
+        /*** Selve brettet ***/
+        rect.board {
+            fill: #f1bc78;
+            stroke: black;
+            stroke-width: 0.05em;
+        }
+
+        rect.part {
+            fill: transparent;
+            stroke: black;
+            stroke-width: 0.03em;
+        }
+
+        /*** Ruter på brettet ***/
+        rect.white {
+            fill: white;
+            stroke: black;
+            stroke-width: 0.03em;
+        }
+        rect.orange {
+            fill: #f96005;
+            stroke: black;
+            stroke-width: 0.03em;
+        }
+        rect.green {
+            fill: #1b792d;
+            stroke: black;
+            stroke-width: 0.03em;
+        }
+        rect.yellow {
+            fill: #fce30a;
+            stroke: black;
+            stroke-width: 0.03em;
+        }
+        rect.blue {
+            fill: #005390;
+            stroke: black;
+            stroke-width: 0.03em;
+        }
+
+        polygon.triangle {
+            stroke: black;
+            stroke-width: 0.03em;
+        }
+
+        /*** Sirkler ***/
+        circle.circle {
+            stroke: black;
+            stroke-width: 0.03em;
+        }
+
+        .orange {
+            fill: #f96005;
+        }
+
+        .green {
+            fill: #1b792d;
+        }
+
+        .yellow {
+            fill: #fce30a;
+        }
+
+        .blue {
+            fill: #005390;
+        }
+
+        .white {
+            fill: white;
+        }
+    </style>
+</head>
+
+<body>
+    <svg width="100" height="100" viewbox="0 0 100 100">
+
+        <!--  Brettet  -->
+        <rect class="board" width="100" height="100" />
+        <!--  Firkant opp høyre  -->
+        <rect class="part" x="5" y="5" width="36" height="36" />
+        <!--  Firkant opp venstre  -->
+        <rect class="part" x="59" y="5" width="36" height="36" />
+        <!--  Firkant ned høyre  -->
+        <rect class="part" x="5" y="59" width="36" height="36" />
+        <!--  Firkant ned venstre  -->
+        <rect class="part" x="59" y="59" width="36" height="36" />
+
+        <!--  Rutene på brettet  -->
+        <!--  Kolonne 1  -->
+        <rect class="white" x="5" y="41" width="6" height="6" />
+        <rect class="white" x="5" y="47" width="6" height="6" />
+        <rect class="white" x="5" y="53" width="6" height="6" />
+        <!--  Kolonne 2  -->
+        <rect class="blue" x="11" y="41" width="6" height="6" />
+        <rect class="blue" x="11" y="47" width="6" height="6" />
+        <rect class="white" x="11" y="53" width="6" height="6" />
+        <!--  Kolonne 3  -->
+        <rect class="white" x="17" y="41" width="6" height="6" />
+        <rect class="blue" x="17" y="47" width="6" height="6" />
+        <rect class="white" x="17" y="53" width="6" height="6" />
+        <!--  Kolonne 4  -->
+        <rect class="white" x="23" y="41" width="6" height="6" />
+        <rect class="blue" x="23" y="47" width="6" height="6" />
+        <rect class="white" x="23" y="53" width="6" height="6" />
+        <!--  Kolonne 5  -->
+        <rect class="white" x="29" y="41" width="6" height="6" />
+        <rect class="blue" x="29" y="47" width="6" height="6" />
+        <rect class="white" x="29" y="53" width="6" height="6" />
+        <!--  Kolonne 6  -->
+        <rect class="white" x="35" y="41" width="6" height="6" />
+        <rect class="blue" x="35" y="47" width="6" height="6" />
+        <rect class="white" x="35" y="53" width="6" height="6" />
+        <!--  Kolonne 7  -->
+        <rect class="white" x="41" y="5" width="6" height="6" />
+        <rect class="white" x="41" y="11" width="6" height="6" />
+        <rect class="white" x="41" y="17" width="6" height="6" />
+        <rect class="white" x="41" y="23" width="6" height="6" />
+        <rect class="white" x="41" y="29" width="6" height="6" />
+        <rect class="white" x="41" y="35" width="6" height="6" />
+        <rect class="white" x="41" y="59" width="6" height="6" />
+        <rect class="white" x="41" y="65" width="6" height="6" />
+        <rect class="white" x="41" y="71" width="6" height="6" />
+        <rect class="white" x="41" y="77" width="6" height="6" />
+        <rect class="yellow" x="41" y="83" width="6" height="6" />
+        <rect class="white" x="41" y="89" width="6" height="6" />
+        <!--  Kolonne 8  -->
+        <rect class="white" x="47" y="5" width="6" height="6" />
+        <rect class="orange" x="47" y="11" width="6" height="6" />
+        <rect class="orange" x="47" y="17" width="6" height="6" />
+        <rect class="orange" x="47" y="23" width="6" height="6" />
+        <rect class="orange" x="47" y="29" width="6" height="6" />
+        <rect class="orange" x="47" y="35" width="6" height="6" />
+        <rect class="yellow" x="47" y="59" width="6" height="6" />
+        <rect class="yellow" x="47" y="65" width="6" height="6" />
+        <rect class="yellow" x="47" y="71" width="6" height="6" />
+        <rect class="yellow" x="47" y="77" width="6" height="6" />
+        <rect class="yellow" x="47" y="83" width="6" height="6" />
+        <rect class="white" x="47" y="89" width="6" height="6" />
+        <!--  Kolonne 9  -->
+        <rect class="white" x="53" y="5" width="6" height="6" />
+        <rect class="orange" x="53" y="11" width="6" height="6" />
+        <rect class="white" x="53" y="17" width="6" height="6" />
+        <rect class="white" x="53" y="23" width="6" height="6" />
+        <rect class="white" x="53" y="29" width="6" height="6" />
+        <rect class="white" x="53" y="35" width="6" height="6" />
+        <rect class="white" x="53" y="59" width="6" height="6" />
+        <rect class="white" x="53" y="65" width="6" height="6" />
+        <rect class="white" x="53" y="71" width="6" height="6" />
+        <rect class="white" x="53" y="77" width="6" height="6" />
+        <rect class="white" x="53" y="83" width="6" height="6" />
+        <rect class="white" x="53" y="89" width="6" height="6" />
+        <!--  Kolonne 10  -->
+        <rect class="white" x="59" y="41" width="6" height="6" />
+        <rect class="green" x="59" y="47" width="6" height="6" />
+        <rect class="white" x="59" y="53" width="6" height="6" />
+        <!--  Kolonne 11  -->
+        <rect class="white" x="65" y="41" width="6" height="6" />
+        <rect class="green" x="65" y="47" width="6" height="6" />
+        <rect class="white" x="65" y="53" width="6" height="6" />
+        <!--  Kolonne 12  -->
+        <rect class="white" x="71" y="41" width="6" height="6" />
+        <rect class="green" x="71" y="47" width="6" height="6" />
+        <rect class="white" x="71" y="53" width="6" height="6" />
+        <!--  Kolonne 13  -->
+        <rect class="white" x="77" y="41" width="6" height="6" />
+        <rect class="green" x="77" y="47" width="6" height="6" />
+        <rect class="white" x="77" y="53" width="6" height="6" />
+        <!--  Kolonne 14  -->
+        <rect class="white" x="83" y="41" width="6" height="6" />
+        <rect class="green" x="83" y="47" width="6" height="6" />
+        <rect class="green" x="83" y="53" width="6" height="6" />
+        <!--  Kolonne 15  -->
+        <rect class="white" x="89" y="41" width="6" height="6" />
+        <rect class="white" x="89" y="47" width="6" height="6" />
+        <rect class="white" x="89" y="53" width="6" height="6" />
+
+        <!--  Sirkler  -->
+        <!--  Blå sirkel  -->
+        <circle class="circle blue" cx="23" cy="23" r="10" />
+        <circle class="circle white" cx="19.5" cy="19.5" r="2" />
+        <circle class="circle white" cx="26.5" cy="19.5" r="2" />
+        <circle class="circle white" cx="19.5" cy="26.5" r="2" />
+        <circle class="circle white" cx="26.5" cy="26.5" r="2" />
+        <!--  Oransj sirkel  -->
+        <circle class="circle orange" cx="77" cy="23" r="10" />
+        <circle class="circle white" cx="73.5" cy="19.5" r="2" />
+        <circle class="circle white" cx="80.5" cy="19.5" r="2" />
+        <circle class="circle white" cx="73.5" cy="26.5" r="2" />
+        <circle class="circle white" cx="80.5" cy="26.5" r="2" />
+        <!--  Gul sirkel  -->
+        <circle class="circle yellow" cx="23" cy="77" r="10" />
+        <circle class="circle white" cx="19.5" cy="73.5" r="2" />
+        <circle class="circle white" cx="26.5" cy="73.5" r="2" />
+        <circle class="circle white" cx="19.5" cy="80.5" r="2" />
+        <circle class="circle white" cx="26.5" cy="80.5" r="2" />
+        <!--  Grønn sirkel  -->
+        <circle class="circle green" cx="77" cy="77" r="10" />
+        <circle class="circle white" cx="80.5" cy="73.5" r="2" />
+        <circle class="circle white" cx="73.5" cy="80.5" r="2" />
+        <circle class="circle white" cx="73.5" cy="73.5" r="2" />
+        <circle class="circle white" cx="80.5" cy="80.5" r="2" />
+
+        <!--  Trekanter  -->
+        <!--  Blå trekant  -->
+        <polygon class="triangle blue" points="50,50 41,41 41,59"/>
+        <!--  Oransj trekant  -->
+        <polygon class="triangle orange" points="50,50 59,41 41,41 "/>
+        <!--  Gul trekant  -->
+        <polygon class="triangle yellow" points="50,50 41,59 59,59 "/>
+        <!--  Grønn trekant  -->
+        <polygon class="triangle green" points="50,50 59,59 59,41"/>
+
+    </svg>
+</body>
+
+</html>

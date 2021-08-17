@@ -1,0 +1,35 @@
+body {
+    background-color: slategray;
+}
+h1 {
+    color: orange;
+}
+h2 {
+    color: rgb(240, 156, 0);
+}
+h3 {
+    color: rgb(209, 136, 0);
+}
+h4 {
+    color: rgb(167, 108, 0);
+}
+h5 {
+    color: rgb(134, 87, 0);
+}
+h6 {
+    color: rgb(90, 59, 0);
+}
+a:link, a:visited {
+    background-color: orange;
+    color:white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: 5px black;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+img {
+    box-shadow: none;
+}
