@@ -1,9 +1,13 @@
+body{
+  background-color: rgb(19, 19, 19);
+}
+
 .title{
   margin-top: 1em;
   text-align:center;
-  width: 31.5em;
+  width: 3em;
   color:white;
-  border: solid black 2px;
+  font-size: 2em;
 }
 
 button {
@@ -13,7 +17,6 @@ button {
   display: block;
   width:10em;
   height: 5em;
-  align-items: center;
 }
 button:hover {
   background-color:rgb(83, 83, 83);
