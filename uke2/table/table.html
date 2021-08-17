@@ -10,40 +10,38 @@
 
 <body>
     <script>
-        function changeText(text){
-            var otilx=document.getElementById('text-display');
-            otilx.innerHTML="x";
+        function doSomething(etNavnDuVelgerSelv){
+            etNavnDuVelgerSelv.innerHTML='x'
         }
-        function defaultText(){
-            var otilx=document.getElementById('text-display');
-            otilx.innerHTML="o";
+        function defaultText(etNavnDuVelgerSelv){
+            etNavnDuVelgerSelv.innerHTML='o'
         }
     </script>
     <div id="text">
-        <table style="font-size: 5em; font-family: 'Courier New', Courier, monospace; line-height: 0.5;">
+        <table style="cursor: pointer; font-size: 5em; font-family: 'Courier New', Courier, monospace;">
             <tr>
-                <td onmouseover="changeText('x')" onmouseout="defaultText()">o</td>
-                <td>o</td>
-                <td>o</td>
-                <td>o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
             </tr>
             <tr>
-                <td>o</td>
-                <td>o</td>
-                <td>o</td>
-                <td>o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
             </tr>
             <tr>
-                <td>o</td>
-                <td>o</td>
-                <td>o</td>
-                <td>o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
             </tr>
             <tr>
-                <td>o</td>
-                <td>o</td>
-                <td>o</td>
-                <td>o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
+                <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
             </tr>
         </table>
     </div>
