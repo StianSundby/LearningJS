@@ -1,0 +1,33 @@
+#displayNumbers {
+    height: 100%;
+    width: 20%;
+    position: relative;
+    position
+    border-top: 0.2em solid black;
+    border-left: 0.2em solid black;
+    border-right: 0.2em solid black;
+    border-bottom: none;
+    border-top-width: 50%;
+    text-align: left;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 2em;
+    margin: 0, auto;
+    padding-bottom: 0.5em;
+}
+
+.gridContainer {
+    background-color: #1b221a;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+    width: 15em;
+    border: 0.5em solid black;
+}
+.gridItem {
+    background-color: #13160d;
+    border: 1px solid #c2c1bd;
+    font-size: 3em;
+    text-align: center;
+    scale: 1;
+    max-width: 100px;
+}
