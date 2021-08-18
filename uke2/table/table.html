@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <a href="../../index.html" style="text-decoration: none;"><button style="cursor: pointer; min-width: none; min-height: 3em;">Tilbake til start</button></a>
     <script>
         function doSomething(etNavnDuVelgerSelv){
             etNavnDuVelgerSelv.innerHTML='x'
@@ -17,6 +18,7 @@
             etNavnDuVelgerSelv.innerHTML='o'
         }
     </script>
+    
     <div id="text">
         <table style="cursor: pointer; font-size: 5em; font-family: 'Courier New', Courier, monospace;">
             <tr>
@@ -44,6 +46,7 @@
                 <td onmouseover="doSomething(this)" onmouseout="defaultText(this)">o</td>
             </tr>
         </table>
+        <p style="font-size: 2em;">Hover one of us!</p>
     </div>
 </body>
 

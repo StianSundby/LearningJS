@@ -33,3 +33,13 @@ a:link, a:visited {
 img {
     box-shadow: none;
 }
+#tilbake {
+    background-color: white;
+    color:black;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 0px;
+    box-shadow: none;
+}
