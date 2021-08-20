@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codelock</title>
+    <!-- Stylesheet -->
+    <link rel ="stylesheet" href="stylesheet.css">
+    <link rel ="stylesheet"href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Javascript -->
+    <script src="codelockscript.js"></script>
+</head>
+
+<body>
+    <!-- Display -->
+    <div class="displayNumbers" id="displayNumbers">
+        <img 
+        class="displayNumbersBG"
+        src="https://i.stack.imgur.com/PEnJm.png" 
+        alt="">
+        Enter Combination
+    </div>
+    <!--Buttons-->
+    <div class="gridContainer">
+        <div class="gridItem" id="b1" onclick="disp">1</div>
+        <div class="gridItem" id="b2" onclick="pushValuesIntoArray()">2</div>
+        <div class="gridItem" id="b3" onclick="pushValuesIntoArray()">3</div>
+        <div class="gridItem" id="b4" onclick="pushValuesIntoArray()">4</div>
+        <div class="gridItem" id="b5" onclick="pushValuesIntoArray()">5</div>
+        <div class="gridItem" id="b6" onclick="pushValuesIntoArray()">6</div>
+        <div class="gridItem" id="b7" onclick="pushValuesIntoArray()">7</div>
+        <div class="gridItem" id="b8" onclick="pushValuesIntoArray()">8</div>
+        <div class="gridItem" id="b9" onclick="pushValuesIntoArray()">9</div>
+        <div class="gridItem material-icons icon-align" id="b0" onclick="pushValuesIntoArray()">backspace</div>
+        <div class="gridItem met" id="bb" onclick="pushValuesIntoArray()">0</div>
+        <div class="gridItem material-icons icon-align" id="bE" onclick="pushValuesIntoArray()">done</div>
+    </div>
+
+    <!-- Set new combination -->
+    <button class="newCode grid">Set new Combination</button>
+
+    <script>
+        //combination for authentication
+        const correctCombination = [1, 2, 3, 4]
+        let pucnhedInCombination = [];
+
+        function validateCombination(){
+            return 0;
+            if (pucnhedInCombination[i] === correctCombination[i]){
+                console.log("Det gikk gjennom")
+            }
+        }
+        function pushValuesIntoArray(numberValue){
+            pucnhedInCombination.push(value);
+            console.log(pucnhedInCombination);
+        }
+
+    </script>
+
+</body>
+</html>
