@@ -39,7 +39,7 @@
     position: relative;
 }
 /***** Dispaly noise filter size/position *****/
-.displayNumbersBG {
+.displayNumbersBackground {
     height: auto;
     width: 100%;
     position: absolute;

@@ -8,56 +8,58 @@
     <title>Codelock</title>
     <!-- Stylesheet -->
     <link rel ="stylesheet" href="stylesheet.css">
+    <!-- Icon library -->
     <link rel ="stylesheet"href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <!-- Javascript -->
-    <script src="codelockscript.js"></script>
 </head>
 
 <body>
     <!-- Display -->
     <div class="displayNumbers" id="displayNumbers">
-        <img 
-        class="displayNumbersBG"
-        src="https://i.stack.imgur.com/PEnJm.png" 
-        alt="">
-        Enter Combination
-    </div>
+        <img class="displayNumbersBackground" src="https://i.stack.imgur.com/PEnJm.png" alt=""> Enter Combination </div>
     <!--Buttons-->
     <div class="gridContainer">
-        <div class="gridItem" id="b1" onclick="disp">1</div>
-        <div class="gridItem" id="b2" onclick="pushValuesIntoArray()">2</div>
-        <div class="gridItem" id="b3" onclick="pushValuesIntoArray()">3</div>
-        <div class="gridItem" id="b4" onclick="pushValuesIntoArray()">4</div>
-        <div class="gridItem" id="b5" onclick="pushValuesIntoArray()">5</div>
-        <div class="gridItem" id="b6" onclick="pushValuesIntoArray()">6</div>
-        <div class="gridItem" id="b7" onclick="pushValuesIntoArray()">7</div>
-        <div class="gridItem" id="b8" onclick="pushValuesIntoArray()">8</div>
-        <div class="gridItem" id="b9" onclick="pushValuesIntoArray()">9</div>
-        <div class="gridItem material-icons icon-align" id="b0" onclick="pushValuesIntoArray()">backspace</div>
-        <div class="gridItem met" id="bb" onclick="pushValuesIntoArray()">0</div>
-        <div class="gridItem material-icons icon-align" id="bE" onclick="pushValuesIntoArray()">done</div>
+        <div class="gridItem" id="b1" onclick="pushValuesIntoArray(1)">1</div>
+        <div class="gridItem" id="b2" onclick="pushValuesIntoArray(2)">2</div>
+        <div class="gridItem" id="b3" onclick="pushValuesIntoArray(3)">3</div>
+        <div class="gridItem" id="b4" onclick="pushValuesIntoArray(4)">4</div>
+        <div class="gridItem" id="b5" onclick="pushValuesIntoArray(5)">5</div>
+        <div class="gridItem" id="b6" onclick="pushValuesIntoArray(6)">6</div>
+        <div class="gridItem" id="b7" onclick="pushValuesIntoArray(7)">7</div>
+        <div class="gridItem" id="b8" onclick="pushValuesIntoArray(8)">8</div>
+        <div class="gridItem" id="b9" onclick="pushValuesIntoArray(9)">9</div>
+        <div class="gridItem material-icons icon-align" id="b0" onclick="pushValuesIntoArray(backspace)">backspace</div>
+        <div class="gridItem met" id="bb" onclick="pushValuesIntoArray(0)">0</div>
+        <div class="gridItem material-icons icon-align" id="bE" onclick="pushValuesIntoArray(done)">done</div>
     </div>
 
     <!-- Set new combination -->
-    <button class="newCode grid">Set new Combination</button>
+    <!-- <button class="newCode grid">Set new Combination</button> -->
 
     <script>
-        //combination for authentication
-        const correctCombination = [1, 2, 3, 4]
-        let pucnhedInCombination = [];
-
-        function validateCombination(){
-            return 0;
-            if (pucnhedInCombination[i] === correctCombination[i]){
-                console.log("Det gikk gjennom")
-            }
+        //combination for auth
+        const correctCombination = [1,2,3,4]
+        let punchedInCombination = []
+  
+        function validateCombination() {
+          for (let i = 0; i < correctCombination.length; i++) {
+            if(punchedInCombination[i] === correctCombination[i] && i === 3) {
+              alert("RIKTIG KODE") } 
+              else if(i === 3){
+              alert("Feil kode")}
+              // legge til funksjonalitet der den innskrevne koden fjernes hvis den er feil
+            console.log(punchedInCombination)
+          }
         }
-        function pushValuesIntoArray(numberValue){
-            pucnhedInCombination.push(value);
-            console.log(pucnhedInCombination);
+  
+        function pushValuesIntoArray(numberValue) {
+          // Limits the digits to 4
+          if (punchedInCombination.length < 4) {
+            punchedInCombination.push(numberValue)
+            document.getElementById("displayNumbers").innerHTML = punchedInCombination;
+          } else {
+            alert("theres too many digits!!")
+          }
         }
-
-    </script>
-
+      </script>
 </body>
 </html>
