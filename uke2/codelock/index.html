@@ -27,39 +27,56 @@
         <div class="gridItem" id="b7" onclick="pushValuesIntoArray(7)">7</div>
         <div class="gridItem" id="b8" onclick="pushValuesIntoArray(8)">8</div>
         <div class="gridItem" id="b9" onclick="pushValuesIntoArray(9)">9</div>
-        <div class="gridItem material-icons icon-align" id="b0" onclick="pushValuesIntoArray(backspace)">backspace</div>
+        <div class="gridItem material-icons icon-align" id="b0" onclick="removeValuesFromArray()">backspace</div>
         <div class="gridItem met" id="bb" onclick="pushValuesIntoArray(0)">0</div>
-        <div class="gridItem material-icons icon-align" id="bE" onclick="pushValuesIntoArray(done)">done</div>
+        <div class="gridItem material-icons icon-align" id="bE" onclick="validateCombination()">done</div>
     </div>
 
     <!-- Set new combination -->
     <!-- <button class="newCode grid">Set new Combination</button> -->
 
     <script>
-        //combination for auth
+        //Array for correct combination
         const correctCombination = [1,2,3,4]
+        //Array for the entered combination
         let punchedInCombination = []
   
+        //Check if the combination is correct
         function validateCombination() {
           for (let i = 0; i < correctCombination.length; i++) {
             if(punchedInCombination[i] === correctCombination[i] && i === 3) {
-              alert("RIKTIG KODE") } 
+              alert("Correct!") } 
               else if(i === 3){
-              alert("Feil kode")}
-              // legge til funksjonalitet der den innskrevne koden fjernes hvis den er feil
+              alert("Wrong!")}
             console.log(punchedInCombination)
           }
         }
   
         function pushValuesIntoArray(numberValue) {
-          // Limits the digits to 4
+          //Limits the digits to 4
           if (punchedInCombination.length < 4) {
             punchedInCombination.push(numberValue)
             document.getElementById("displayNumbers").innerHTML = punchedInCombination;
-          } else {
-            alert("theres too many digits!!")
+          } 
+          else {
+            document.getElementById("displayNumbers").classList.add(displayNumbersError)
+            console.log("Too many digits in the array")
           }
         }
+
+        //Backspace
+        function removeValuesFromArray() {
+          //check if there are no numbers stored in the array
+          if (punchedInCombination.length < 1){
+            document.getElementById("displayNumbers").innerHTML = "Empty";
+          }
+          //remove the last index from array 'punchedInCombination'
+          else {
+            punchedInCombination.splice(-1)
+            document.getElementById("displayNumbers").innerHTML = punchedInCombination;
+          }
+        }
+
       </script>
 </body>
 </html>
