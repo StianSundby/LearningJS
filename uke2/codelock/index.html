@@ -6,17 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Codelock</title>
-    <!-- Stylesheet -->
+    <!-- stylesheet -->
     <link rel ="stylesheet" href="stylesheet.css">
-    <!-- Icon library -->
+    <!-- icon library -->
     <link rel ="stylesheet"href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
-    <!-- Display -->
-    <div class="displayNumbers" id="displayNumbers">
-        <img class="displayNumbersBackground" src="https://i.stack.imgur.com/PEnJm.png" alt=""> Enter Combination </div>
-    <!--Buttons-->
+    <!-- display -->
+    <div class="" id="display"> Enter Combination </div>
+    <!--buttons-->
     <div class="gridContainer">
         <div class="gridItem" id="b1" onclick="pushValuesIntoArray(1)">1</div>
         <div class="gridItem" id="b2" onclick="pushValuesIntoArray(2)">2</div>
@@ -32,49 +31,65 @@
         <div class="gridItem material-icons icon-align" id="bE" onclick="validateCombination()">done</div>
     </div>
 
-    <!-- Set new combination -->
-    <!-- <button class="newCode grid">Set new Combination</button> -->
+    <!-- set new combination
+    <button class="newCode grid" onclick="setNewCombination()">Set new Combination</button> -->
 
     <script>
-        //Array for correct combination
+        //array for correct combination
         const correctCombination = [1,2,3,4]
-        //Array for the entered combination
+        //array for the entered combination
         let punchedInCombination = []
+        //declaring Display
+        var display = document.getElementById("display");
   
         //Check if the combination is correct
         function validateCombination() {
           for (let i = 0; i < correctCombination.length; i++) {
             if(punchedInCombination[i] === correctCombination[i] && i === 3) {
-              alert("Correct!") } 
-              else if(i === 3){
-              alert("Wrong!")}
+              display.innerHTML ="Correct"
+              console.log("Correct combination")
+            }
+
+            else if(i === 3){
+              display.innerHTML="Error"
+              display.classList.add("displayError");
+              alert("Wrong!")
+            }
             console.log(punchedInCombination)
           }
         }
+        
   
+        //pushes the value of the buttons you pressed into the "pucnhedInCombination" array
         function pushValuesIntoArray(numberValue) {
-          //Limits the digits to 4
+          //limits the digits to 4
           if (punchedInCombination.length < 4) {
             punchedInCombination.push(numberValue)
-            document.getElementById("displayNumbers").innerHTML = punchedInCombination;
+            display.innerHTML = punchedInCombination;
           } 
+          //if you enter more than 4 digits
           else {
-            document.getElementById("displayNumbers").classList.add(displayNumbersError)
+            display.classList.add("displayError");
             console.log("Too many digits in the array")
           }
         }
 
-        //Backspace
+        //backspace
         function removeValuesFromArray() {
           //check if there are no numbers stored in the array
           if (punchedInCombination.length < 1){
-            document.getElementById("displayNumbers").innerHTML = "Empty";
+            display.innerHTML = "Empty";
           }
-          //remove the last index from array 'punchedInCombination'
+          //remove the last index from the 'punchedInCombination' array
           else {
             punchedInCombination.splice(-1)
-            document.getElementById("displayNumbers").innerHTML = punchedInCombination;
+            display.innerHTML = punchedInCombination;
           }
+        }
+
+        //set a new combination
+        function setNewCombination(){
+
         }
 
       </script>
