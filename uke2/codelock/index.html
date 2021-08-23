@@ -45,22 +45,16 @@
         //Check if the combination is correct
         function validateCombination() {
           for (let i = 0; i < correctCombination.length; i++) {
+            //correct numbers
             if(punchedInCombination[i] === correctCombination[i] && i === 3) {
               display.innerHTML ="Correct";
               console.log("Correct combination");
               punchedInCombination = [];
             }
-
-            else if(i === 3){
+            //wrong numbers
+            else if(punchedInCombination[i] !== correctCombination[i] && i === 3){
               display.innerHTML="Error";
               console.log("Wrong combination");
-              punchedInCombination = [];
-              displayError();
-            }
-
-            else if(i === 3){
-              display.innerHTML="Error"
-              console.log("No numbers entered");
               punchedInCombination = [];
               displayError();
             }

@@ -48,11 +48,6 @@
     75% { transform: translateX(3px) }
 }
 
-/***** dispaly noise filter within the div *****/
-.display {
-
-}
-
 /***** buttons on lock *****/
 /***** grid and background for buttons on lock*****/
 .gridContainer {
