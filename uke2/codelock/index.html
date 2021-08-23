@@ -30,48 +30,77 @@
         <div class="gridItem met" id="bb" onclick="pushValuesIntoArray(0)">0</div>
         <div class="gridItem material-icons icon-align" id="bE" onclick="validateCombination()">done</div>
     </div>
-
-    <!-- set new combination
-    <button class="newCode grid" onclick="setNewCombination()">Set new Combination</button> -->
+    <!-- set new combination -->
+    <button class="newCode" onclick="setNewCombination()">Set new Combination</button>
 
     <script>
         //array for correct combination
-        const correctCombination = [1,2,3,4]
         //array for the entered combination
+        let correctCombination = [1, 2, 3, 4]
         let punchedInCombination = []
-        //declaring Display
-        var display = document.getElementById("display");
+
+        const display = document.getElementById("display");
+        newCombinationState = false;
   
         //Check if the combination is correct
         function validateCombination() {
           for (let i = 0; i < correctCombination.length; i++) {
             if(punchedInCombination[i] === correctCombination[i] && i === 3) {
-              display.innerHTML ="Correct"
-              console.log("Correct combination")
+              display.innerHTML ="Correct";
+              console.log("Correct combination");
+              punchedInCombination = [];
+            }
+
+            else if(i === 3){
+              display.innerHTML="Error";
+              console.log("Wrong combination");
+              punchedInCombination = [];
+              displayError();
             }
 
             else if(i === 3){
               display.innerHTML="Error"
-              display.classList.add("displayError");
-              alert("Wrong!")
+              console.log("No numbers entered");
+              punchedInCombination = [];
+              displayError();
             }
-            console.log(punchedInCombination)
+            console.log(punchedInCombination);
           }
         }
         
-  
-        //pushes the value of the buttons you pressed into the "pucnhedInCombination" array
+        //activates the ability to set a new combination - see pushValuesIntoArray()
+        function setNewCombination(){
+          newCombinationState = 1;
+          pushValuesIntoArray();
+          console.log("setNewCombinationState = 1");
+        }
+
+        //pushes the value of the buttons you press into the "pucnhedInCombination" array
         function pushValuesIntoArray(numberValue) {
-          //limits the digits to 4
-          if (punchedInCombination.length < 4) {
-            punchedInCombination.push(numberValue)
-            display.innerHTML = punchedInCombination;
-          } 
-          //if you enter more than 4 digits
-          else {
-            display.classList.add("displayError");
-            console.log("Too many digits in the array")
+          //if you haven't clicked the Set New Combination button
+          if (newCombinationState = false) {
+            if (punchedInCombination.length < 4) {
+              punchedInCombination.push(numberValue);
+              display.innerHTML = punchedInCombination;
+            }
+            else {
+              console.log("too many digits in the array");
+              displayError();
+            }
           }
+          // if you've clicked the Set New Combination button
+          else if (newCombinationState) {
+            if (correctCombination.length < 4) {
+              correctCombination.push(numberValue);
+              display.innerHTML = correctCombination;
+              console.log(correctCombination);
+            }
+            else if (correctCombination.length > 3) {
+              punchedInCombination = [];
+              console.log("setNewCombinationState = 0");
+            }
+          }
+          console.log(numberValue);
         }
 
         //backspace
@@ -87,11 +116,36 @@
           }
         }
 
-        //set a new combination
-        function setNewCombination(){
-
+        //error animation
+        function displayError() {
+          display.classList.add("displayError");
+          //remove the class after 0.25seconds/250milliseconds
+          setTimeout(function(){display.classList.remove("displayError");}, 250);
         }
 
       </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- //   //limits the digits to 4
+//   if (punchedInCombination.length < 4) {
+//     punchedInCombination.push(numberValue)
+//     display.innerHTML = punchedInCombination;
+//   } 
+//   //if you enter more than 4 digits
+//   else {
+//     display.classList.add("displayError");
+//     console.log("Too many digits in the array")
+//   }
+// } -->
