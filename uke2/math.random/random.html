@@ -9,5 +9,35 @@
 <body>
     <!-- Home button -->
     <a href="../../index.html" style="text-decoration: none;"><button style="cursor: pointer; min-width: none; min-height: 3em;">Tilbake til start</button></a><br><br><br>
+    <button style="position: relative; cursor: pointer; min-width: none; min-height: 3em;" onclick="doClick()">Refresh</button>
+    
+    <div id="stats"></div>
+    <div id="stats2"></div>
+    <div id="stats3"></div>
+    <div style="background-color: black;" id="result"></div>
+
+    <script>
+        var resultDiv = document.getElementById('result');
+        var statsDiv = document.getElementById('stats');
+        var statsDiv2 = document.getElementById('stats2');
+        var statsDiv3 = document.getElementById('stats3');
+        calculate();
+
+        function calculate() {
+            var width = 10 + Math.floor(Math.random() * 490);
+            var height = 10 + Math.floor(Math.random() * 490);
+            var border = 1 + Math.floor(Math.random() * 19);
+
+            resultDiv.innerHTML = '<div style="' +'width: ' +width +'px;' +'height: ' +height +'px;' +'border: ' +border +'px solid red' +'">' +'</div>';
+            statsDiv.innerText = 'width: ' +width +'px';
+            statsDiv2.innerText = 'height: ' +height +'px';
+            statsDiv3.innerText = 'border: ' +border +'px';
+
+        }
+
+        function doClick() {
+            window.location.reload();
+        }
+    </script>
 </body>
 </html>
