@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box</title>
+</head>
+<body>
+    <input id="heightSlider" type="range" min="1" max="1000" step="1" oninput="calculate()"/>
+    <input id="widthSlider" type="range" min="1" max="1000" step="1" oninput="calculate()"/>
+    
+    <div style="background-color: black;" id="result"></div>
+    <div id="resultDivHtml"></div>
+
+
+    <script>
+        var resultDiv = document.getElementById('result');
+        var resultDivHtml = document.getElementById('resultDivHtml')
+        var boxHeight = document.getElementById('heightSlider');
+        var boxWidth = document.getElementById('widthSlider');
+
+        calculate();
+
+        function calculate() {
+            resultDiv.innerHTML = '<div style="'
+                +'width: '+boxWidth.value+'px;'
+                +'height: '+boxHeight.value+'px;'
+                +'">'
+                + '</div>';
+            resultDivHtml.innerText = resultDiv.innerHTML;
+        }
+
+    </script>
+</body>
+</html>

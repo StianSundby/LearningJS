@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="onLoadStylesheet.css">
+    <title>onLoad</title>
+</head>
+<body onload="whenLoaded()">
+    <button><a href="../../index.html">Tilbake til start</a></button><br><br><br>
+
+    <div>Under lasting av siden:</div>
+    <div id="whenLoadedText"></div><br>
+
+    <div>Etter lasting av siden:</div>
+    <div id="afterLoadedText"></div><br>
+
+    <button onclick="doClick()">Refresh</button>
+    <img src="https://external-preview.redd.it/6TXAkRpxA3Qv7EIc8HqgEvKYr-_OL0MNv4m8RtLtDxI.jpg?auto=webp&s=f9e4f0568445f11bcb781b12b3a0414d8b959a57" alt="">
+    
+    
+
+    <script>
+        var whenLoadedText = document.getElementById("whenLoadedText")
+        var afterLoadedText = document.getElementById("afterLoadedText")
+        var dateVar = new Date();
+
+        afterLoaded();
+        function whenLoaded() {
+            var timeStamp =  '' + dateVar.getMinutes() + ':' + dateVar.getSeconds() + ':' + dateVar.getMilliseconds();
+            whenLoadedText.innerHTML = timeStamp.substring(0, timeStamp.length -1);
+            
+        }
+        function afterLoaded() {
+            var timeStamp =  '' + dateVar.getMinutes() + ':' + dateVar.getSeconds() + ':' + dateVar.getMilliseconds();
+            afterLoadedText.innerHTML = timeStamp.substring(0, timeStamp.length -1);
+        }
+
+        function doClick() {
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>
