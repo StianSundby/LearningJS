@@ -6,29 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Box</title>
 </head>
+
 <body>
+    <!-- Home button -->
+    <a href="../../index.html" style="text-decoration: none;"><button style="cursor: pointer; min-width: none; min-height: 3em;">Tilbake til start</button></a><br><br><br>
+
+    <!-- Sliders -->
+    <p>Adjust height</p>
     <input id="heightSlider" type="range" min="1" max="1000" step="1" oninput="calculate()"/>
-    <input id="widthSlider" type="range" min="1" max="1000" step="1" oninput="calculate()"/>
-    
-    <div style="background-color: black;" id="result"></div>
-    <div id="resultDivHtml"></div>
+    <p>Adjust width</p>
+    <input id="widthSlider" type="range" min="1" max="1000" step="1" oninput="calculate()"/><br><br><br>
+
+    <!-- Divs -->
+    <div id="resultHeight"></div>
+    <div id="resultWidth"></div>
+    <div id="resultArea"></div>
+    <div id="resultCircumference"></div>
+    <div style="background-color: black;" id="box"></div>
 
 
     <script>
-        var resultDiv = document.getElementById('result');
-        var resultDivHtml = document.getElementById('resultDivHtml')
-        var boxHeight = document.getElementById('heightSlider');
-        var boxWidth = document.getElementById('widthSlider');
+        var boxDiv = document.getElementById('box');
+        var heightSlider = document.getElementById('heightSlider');
+        var widthSlider = document.getElementById('widthSlider');
+
+        var resultHeight = document.getElementById('resultHeight')
+        var resultWidth = document.getElementById('resultWidth')
+        var resultArea = document.getElementById('resultArea')
+        var resultCircumference = document.getElementById('resultCircumference')
+
 
         calculate();
 
         function calculate() {
-            resultDiv.innerHTML = '<div style="'
-                +'width: '+boxWidth.value+'px;'
-                +'height: '+boxHeight.value+'px;'
-                +'">'
-                + '</div>';
-            resultDivHtml.innerText = resultDiv.innerHTML;
+            //dynamic styling
+            boxDiv.innerHTML = '<div style="'+'width: '+widthSlider.value+'px;'+'height: '+heightSlider.value+'px;'+'">'+'</div>';
+
+            //Shows some specs of the box
+            resultHeight.innerText = 'Height: '+heightSlider.value +'px';
+            resultWidth.innerText = 'Width: '+widthSlider.value +'px';
+            resultArea.innerText = 'Area: '+heightSlider.value*widthSlider.value+' square pixels';
+            resultCircumference.innerText = 'Circumference: '+heightSlider.value*2 +widthSlider.value*2+' pixels';
         }
 
     </script>
