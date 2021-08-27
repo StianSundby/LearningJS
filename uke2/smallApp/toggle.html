@@ -9,100 +9,58 @@
 </head>
 
 <body>
-    <!-- Home button -->
     <a href="../../index.html" style="text-decoration: none;"><button style="cursor: pointer; min-width: none; min-height: 3em;">Tilbake til start</button></a><br><br><br>
     
     <!-- Blue checkbox -->
-    <input type="checkbox" id="blue" name="blue" class="input" onchange="doSomethingA(), cbChange(this)">
+    <input class="checkBox" name="blue" id="blue" type="checkbox" onchange="checkBoxChange(this)"/>
     <label for="blue">Blue</label>
     <!-- Red checkbox -->
-    <input type="checkbox" id="red" name="red" class="input" onchange="doSomethingB(), cbChange(this)">
+    <input class="checkBox" name="red" id="red" type="checkbox" onchange="checkBoxChange(this)"/>
     <label for="red">Red</label>
     <!-- Beige checkbox -->
-    <input type="checkbox" id="beige" name="beige" class="input" onchange="doSomethingB(), cbChange(this)">
+    <input class="checkBox" name="beige" id="beige" type="checkbox" onchange="checkBoxChange(this)"/>
     <label for="beige">Beige</label>
     <!-- Yellow checkbox -->
-    <input type="checkbox" id="yellow" name="yellow" class="input" onchange="doSomethingB(), cbChange(this)">
+    <input class="checkBox" name="yellow" id="yellow" type="checkbox" onchange="checkBoxChange(this)"/>
     <label for="yellow">Yellow</label>
     <!-- Green checkbox -->
-    <input type="checkbox" id="green" name="green" class="input" onchange="doSomethingB(), cbChange(this)">
+    <input class="checkBox" name="green" id="green" type="checkbox" onchange="checkBoxChange(this)"/>
     <label for="green">Green</label>
 
-    <!-- Result div -->
-    <h2 id="result">Choose a color</h2>
+    <h2 class="blue" id="result"></h2>
 
     <script>
-        //Declarations
-        var result = document.getElementById('result');
-        var input = document.getElementsByClassName('input');
+        const result = document.getElementById('result');
+        const classNames = ['blue', 'red', 'beige', 'yellow', 'green'];
 
-        //Disable the other checkboxes, except the one that is clicked
-        function cbChange(obj) {
-            //if index = 0 
-            //and index is smaller than the length of input
-            //add 1 to index and run the code underneath
-            for (let i = 0; i < input.length; i++) {
-                //uncheck the checkbox on the index
-                input[i].checked = false;
+        function checkBoxChange(obj) {
+            var checkBoxes = document.getElementsByClassName("checkBox");
+            for (var i = 0; i < checkBoxes.length; i++) {
+                checkBoxes[i].checked = false;
             }
-            //check the checkbox on the current object
             obj.checked = true;
-        }
-        //Change the result to blue and disable the other classes
-        function doSomethingA(obj) {          
-            if (result.classList.contains('red, beige, yellow, green')) {
-                result.classList.remove('red');
-                result.classList.remove('beige');
-                result.classList.remove('yellow');
-                result.classList.remove('green');
+            result.classList = "";
+            if (this.getElementById('blue')){
+                result.classList.add('blue');
             }
-            result.classList.toggle('blue');
-            result.innerHTML = "Blue";
-        }
-        //Change the result to red and disable the other classes
-        function doSomethingB(obj) {
-            if (result.classList.contains('blue, beige, yellow, green')) {
-                result.classList.remove('blue');
-                result.classList.remove('beige');
-                result.classList.remove('yellow');
-                result.classList.remove('green');
+            else if (this.getElementById('red')){
+                result.classList.add('red');
             }
-            result.classList.toggle('red');
-            result.innerHTML = "Red";
-        }
-        //Change the result to beige and disable the other classes
-        function doSomethingC(obj) {
-            if(result.classList.contains('blue, red, yellow, green')) {
-                result.classList.remove('blue');
-                result.classList.remove('red');
-                result.classList.remove('yellow');
-                result.classList.remove('green');
+            else if (this.getElementById('beige')){
+                result.classList.add('beige');
             }
-            result.classList.toggle('beige')
-            result.innerHTML = "Beige? ish";        
-        }
-        //Change the result to yellow and disable the other classes
-        function doSomethingD(obj) {     
-            if(result.classList.contains('blue, red, beige, green')) {
-                result.classList.remove('blue');
-                result.classList.remove('red');
-                result.classList.remove('beige');
-                result.classList.remove('green');
-            }  
-            result.classList.toggle('yellow')
-            result.innerHTML = "Yellow"; 
-        }
-        //Change the result to green and disable the other classes
-        function doSomethingE(obj) {
-            if(result.classList.contains('blue, red, beige, yellow')) {
-                result.classList.remove('blue');
-                result.classList.remove('red');
-                result.classList.remove('beige');
-                result.classList.remove('yellow');
+            else if (this.getElementById ('yellow')){
+                result.classList.add('yellow');
             }
-            result.classList.toggle('green')
-            result.innerHTML = "Green";
+            else if (this.getElementById ('green')){
+                result.classList.add('green');
+            }
+            else {
+                result.classList = "";
+                console.log("Could not add class") 
+            }
         }
+
     </script>
 </body>
 </html>
