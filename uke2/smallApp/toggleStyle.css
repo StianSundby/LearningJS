@@ -1,0 +1,50 @@
+.blue {
+    background: linear-gradient(to right top, #4791FF, #276ED9, #2E4870);
+    width: 8em;
+    height: 8em;
+    border-left: 0.5em solid rgba(217, 157, 39, 1);
+    border-bottom: 0.5em solid rgba(217, 157, 39, 1);
+    border-right: 0.5em solid rgba(143, 126, 93, 1);
+    border-top: 0.5em solid rgba(143, 126, 93, 1);
+}
+
+.red {
+    background: linear-gradient(to right top, #8A3C4C, #D9274B, #FF476C);
+    width: 8em;
+    height: 8em;
+    border-left: 0.5em solid rgba(39, 217, 69, 1);
+    border-bottom: 0.5em solid rgba(39, 217, 69, 1);
+    border-right: 0.5em solid rgba(93, 143, 101, 1);
+    border-top: 0.5em solid rgba(93, 143, 101, 1);
+}
+
+.beige {
+    background: linear-gradient(to right top, #A8958C, #D95F27, #FF8247);
+    width: 8em;
+    height: 8em;
+    border-left: 0.5em solid rgba(39, 217, 199, 1);
+    border-bottom: 0.5em solid rgba(39, 217, 199, 1);
+    border-right: 0.5em solid rgba(93, 143, 138, 1);
+    border-top: 0.5em solid rgba(93, 143, 138, 1);
+}
+
+.yellow {
+    background: linear-gradient(to right top, #FEF56C, #FFF347, #D9CD27);
+    width: 8em;
+    height: 8em;
+    border-left: 0.5em solid rgba(94, 39, 217, 1);
+    border-bottom: 0.5em solid rgba(94, 39, 217, 1);
+    border-right: 0.5em solid rgba(108, 93, 143, 1);
+    border-top: 0.5em solid rgba(108, 93, 143, 1);
+}
+
+.green {
+    background: linear-gradient(to right top, #85FF47, #60E71E, #62D927);
+    width: 8em;
+    height: 8em;
+    border-left: 0.5em solid rgba(217, 39, 213, 1);
+    border-bottom: 0.5em solid rgba(217, 39, 213, 1);
+    border-right: 0.5em solid rgba(143, 93, 142, 1);
+    border-top: 0.5em solid rgba(143, 93, 142, 1);
+}
+

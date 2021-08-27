@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="toggleStyle.css">
+    <title>Toggle</title>
+</head>
+
+<body>
+    <!-- Home button -->
+    <a href="../../index.html" style="text-decoration: none;"><button style="cursor: pointer; min-width: none; min-height: 3em;">Tilbake til start</button></a><br><br><br>
+    
+    <!-- Blue checkbox -->
+    <input type="checkbox" id="blue" name="blue" class="input" onchange="doSomethingA(), cbChange(this)">
+    <label for="blue">Blue</label>
+    <!-- Red checkbox -->
+    <input type="checkbox" id="red" name="red" class="input" onchange="doSomethingB(), cbChange(this)">
+    <label for="red">Red</label>
+    <!-- Beige checkbox -->
+    <input type="checkbox" id="beige" name="beige" class="input" onchange="doSomethingB(), cbChange(this)">
+    <label for="beige">Beige</label>
+    <!-- Yellow checkbox -->
+    <input type="checkbox" id="yellow" name="yellow" class="input" onchange="doSomethingB(), cbChange(this)">
+    <label for="yellow">Yellow</label>
+    <!-- Green checkbox -->
+    <input type="checkbox" id="green" name="green" class="input" onchange="doSomethingB(), cbChange(this)">
+    <label for="green">Green</label>
+
+    <!-- Result div -->
+    <h2 id="result">Choose a color</h2>
+
+    <script>
+        //Declarations
+        var result = document.getElementById('result');
+        var input = document.getElementsByClassName('input');
+
+        //Disable the other checkboxes, except the one that is clicked
+        function cbChange(obj) {
+            //if index = 0 
+            //and index is smaller than the length of input
+            //add 1 to index and run the code underneath
+            for (let i = 0; i < input.length; i++) {
+                //uncheck the checkbox on the index
+                input[i].checked = false;
+            }
+            //check the checkbox on the current object
+            obj.checked = true;
+        }
+        //Change the result to blue and disable the other classes
+        function doSomethingA(obj) {          
+            if (result.classList.contains('red, beige, yellow, green')) {
+                result.classList.remove('red');
+                result.classList.remove('beige');
+                result.classList.remove('yellow');
+                result.classList.remove('green');
+            }
+            result.classList.toggle('blue');
+            result.innerHTML = "Blue";
+        }
+        //Change the result to red and disable the other classes
+        function doSomethingB(obj) {
+            if (result.classList.contains('blue, beige, yellow, green')) {
+                result.classList.remove('blue');
+                result.classList.remove('beige');
+                result.classList.remove('yellow');
+                result.classList.remove('green');
+            }
+            result.classList.toggle('red');
+            result.innerHTML = "Red";
+        }
+        //Change the result to beige and disable the other classes
+        function doSomethingC(obj) {
+            if(result.classList.contains('blue, red, yellow, green')) {
+                result.classList.remove('blue');
+                result.classList.remove('red');
+                result.classList.remove('yellow');
+                result.classList.remove('green');
+            }
+            result.classList.toggle('beige')
+            result.innerHTML = "Beige? ish";        
+        }
+        //Change the result to yellow and disable the other classes
+        function doSomethingD(obj) {     
+            if(result.classList.contains('blue, red, beige, green')) {
+                result.classList.remove('blue');
+                result.classList.remove('red');
+                result.classList.remove('beige');
+                result.classList.remove('green');
+            }  
+            result.classList.toggle('yellow')
+            result.innerHTML = "Yellow"; 
+        }
+        //Change the result to green and disable the other classes
+        function doSomethingE(obj) {
+            if(result.classList.contains('blue, red, beige, yellow')) {
+                result.classList.remove('blue');
+                result.classList.remove('red');
+                result.classList.remove('beige');
+                result.classList.remove('yellow');
+            }
+            result.classList.toggle('green')
+            result.innerHTML = "Green";
+        }
+    </script>
+</body>
+</html>
