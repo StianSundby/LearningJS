@@ -12,26 +12,26 @@
     <a href="../../index.html" style="text-decoration: none;"><button style="cursor: pointer; min-width: none; min-height: 3em;">Tilbake til start</button></a><br><br><br>
     
     <!-- Blue checkbox -->
-    <input class="checkBox" name="blue" id="blue" type="checkbox" onchange="checkBoxChange(this)"/>
+    <input class="checkBox" name="blue" id="blue" type="checkbox" onchange="checkBoxChange(this), changeId(this.id)"/>
     <label for="blue">Blue</label>
     <!-- Red checkbox -->
-    <input class="checkBox" name="red" id="red" type="checkbox" onchange="checkBoxChange(this)"/>
+    <input class="checkBox" name="red" id="red" type="checkbox" onchange="checkBoxChange(this), changeId(this.id)"/>
     <label for="red">Red</label>
-    <!-- Beige checkbox -->
-    <input class="checkBox" name="beige" id="beige" type="checkbox" onchange="checkBoxChange(this)"/>
-    <label for="beige">Beige</label>
+    <!-- orange checkbox -->
+    <input class="checkBox" name="orange" id="orange" type="checkbox" onchange="checkBoxChange(this), changeId(this.id)"/>
+    <label for="orange">Orange</label>
     <!-- Yellow checkbox -->
-    <input class="checkBox" name="yellow" id="yellow" type="checkbox" onchange="checkBoxChange(this)"/>
+    <input class="checkBox" name="yellow" id="yellow" type="checkbox" onchange="checkBoxChange(this), changeId(this.id)"/>
     <label for="yellow">Yellow</label>
     <!-- Green checkbox -->
-    <input class="checkBox" name="green" id="green" type="checkbox" onchange="checkBoxChange(this)"/>
+    <input class="checkBox" name="green" id="green" type="checkbox" onchange="checkBoxChange(this), changeId(this.id)"/>
     <label for="green">Green</label>
 
-    <h2 class="blue" id="result"></h2>
+    <h2 class="" id="result"></h2>
 
     <script>
-        const result = document.getElementById('result');
-        const classNames = ['blue', 'red', 'beige', 'yellow', 'green'];
+        idArray = ['blue', 'red', 'orange', 'yellow', 'green']
+        var result = document.getElementById('result');
 
         function checkBoxChange(obj) {
             var checkBoxes = document.getElementsByClassName("checkBox");
@@ -39,25 +39,24 @@
                 checkBoxes[i].checked = false;
             }
             obj.checked = true;
+        }
+
+        function changeId(clickedId){
             result.classList = "";
-            if (this.getElementById('blue')){
+            if (clickedId === 'blue'){
                 result.classList.add('blue');
             }
-            else if (this.getElementById('red')){
+            else if (clickedId === 'red'){
                 result.classList.add('red');
             }
-            else if (this.getElementById('beige')){
-                result.classList.add('beige');
+            else if (clickedId === 'orange'){
+                result.classList.add('orange');
             }
-            else if (this.getElementById ('yellow')){
+            else if (clickedId === 'yellow'){
                 result.classList.add('yellow');
             }
-            else if (this.getElementById ('green')){
+            else if (clickedId === 'green'){
                 result.classList.add('green');
-            }
-            else {
-                result.classList = "";
-                console.log("Could not add class") 
             }
         }
 
