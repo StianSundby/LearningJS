@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Refactor</title>
+    <style>
+        #homeLink {
+            text-decoration: none;
+        }
+        #homeButton {
+            cursor: pointer;
+            min-width: none;
+            min-height: 3em;
+        }
+        #hoverTable {
+            cursor: pointer;
+            font-size: 5em;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+        }
+        #board {
+            min-width: 1em;
+            min-height: 1em;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="../../index.html" id="homeLink">
+        <button id="homeButton">Home</button>
+    </a>
+    <br><br><br>
+    <div id="view"></div>
+
+    <script>
+        //model
+        var turn = 0;
+
+        //view
+        updateView();
+        function updateView(){
+            document.getElementById("view").innerHTML=`
+                <table id="hoverTable">
+                    <tr>
+                        <td>
+                            <div onclick="changePiece(this)"></div>
+                        </td>
+                        <td>
+                            <div onclick="changePiece(this)"></div>
+                        </td>
+                        <td>
+                            <div onclick="changePiece(this)"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div onclick="changePiece(this)"></div>
+                        </td>
+                        <td>
+                            <div onclick="changePiece(this)"></div>
+                        </td>
+                        <td>
+                            <div onclick="changePiece(this)"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div onclick="changePiece(this)"></div>
+                        </td>
+                        <td>
+                            <div onclick="changePiece(this)"></div>
+                        </td>
+                        <td>
+                            <div onclick="changePiece(this)"></div>
+                        </td>
+                    </tr>
+            `;
+        }
+        //controller
+        function changePiece(boardPiece) {
+            if (turn >= 9){
+                alert("no more turns")
+                window.location.reload();
+            }
+            else if (boardPiece.style.backgroundColor === "red"){
+                return;
+            }
+            else if (boardPiece.style.backgroundColor === "blue"){
+                return;
+            }
+            else if (turn % 2 == 0){
+                boardPiece.style.backgroundColor = "red";
+                turn++;
+                console.log('Turn: '+turn);
+                console.log('The number is odd')
+            }
+            else {
+                boardPiece.style.backgroundColor = "blue";
+                turn++;
+                console.log('Turn: '+turn);
+                console.log('The number is even')
+                
+            }
+            updateView();
+        }
+    </script>
+</body>
+
+</html>
