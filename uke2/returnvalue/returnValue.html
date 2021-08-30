@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return Value</title>
+    <style>
+        div {
+            position: absolute;
+            z-index: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- home button -->
+    <a href="../../index.html" style="text-decoration: none; z-index: 1;">
+        <button style="cursor: pointer; min-width: none; min-height: 3em; z-index: 1;">Home</button>
+    </a>
+    <br><br>
+    <!-- refresh button -->
+    <button style="position: relative; cursor: pointer; min-width: none; min-height: 3em; z-index: 1;" onclick="doClick()">Refresh</button>
+
+    <script>
+        randomSquare();
+        //generates random squares on the screen
+        function randomSquare() {
+            //make sure they dont fill the screen
+            var endX = randomNumber(window.innerWidth * 0.2, window.innerWidth);
+            var endY = randomNumber(window.innerHeight * 0.2, window.innerHeight);
+            var startX = randomNumber(1, endX * 0.8);
+            var startY = randomNumber(1, endY * 0.8);
+
+            var width = endX - startX;
+            var height = endY - startY;
+            var color = randomColor();
+            var character = randomLetter();
+            var characterV1 = randomVowel();
+            var characterV2 = randomVowel();
+            var characterC1 = randomConsonant();
+            var characterC2 = randomConsonant();
+            var characterC3 = randomConsonant();
+            var divHtml = '<div id="divGen" style="' +
+                partitionStylePx('left', startX) +
+                partitionStylePx('top', startY) +
+                partitionStylePx('width', width) +
+                partitionStylePx('height', height) +
+                partitionStyle('background-color', color) + 
+                '">'+
+                characterC1 + characterV1 + characterC2 + characterV2 + characterC3 +
+                '</div>';
+
+            document.write(divHtml);
+            if (Math.random() < 0.9) randomSquare();
+        }
+        //style seperators with pixels at the end
+        function partitionStylePx(name, value) {
+            return partitionStyle(name, value + 'px');
+        }
+        //style seperators
+        function partitionStyle(name, value) {
+            return name + ':' + value + ';';
+        }
+        //random color generator (uses hexcodes)
+        function randomColor() {
+            return '#' +
+                randomNumberOrLetter() +
+                randomNumberOrLetter() +
+                randomNumberOrLetter() +
+                randomNumberOrLetter() +
+                randomNumberOrLetter() +
+                randomNumberOrLetter();
+        }
+        //random number or letter generator (for hexcodes)
+        function randomNumberOrLetter() {
+            var number = randomNumber(0, 15);
+            if (number < 10) return number;
+            const charCodeA = 'a'.charCodeAt(0);
+            return String.fromCharCode(number - 10 + charCodeA);
+        }
+        //random number generator (used in the above and below functions)
+        function randomNumber(minimum, maximum) {
+            return minimum + Math.floor(Math.random() * (maximum - minimum + 1));
+        }
+        //random letter generator
+        function randomLetter() {
+            var letter = randomNumber(0, 28);
+            const charCodeA = 'a'.charCodeAt(0);
+            if (letter === 26) {
+                return 'æ';}
+            else if (letter === 27) {
+                return 'ø';}
+            else if (letter === 28) {
+                return 'å';}
+            else {
+                return String.fromCharCode(letter + charCodeA);}
+        }
+
+        function randomVowel() {
+            var vowels = ['a', 'e', 'i', 'o', 'u', 'y', 'æ', 'ø', 'å']
+            var vowel = vowels[Math.floor(Math.random()*vowels.length)];
+            return vowel;
+        }
+        function randomConsonant() {
+            var consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'z']
+            var consonant = consonants [Math.floor(Math.random()*consonants.length)];
+            return consonant;
+        }
+
+        //reload page
+        function doClick() {
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>

@@ -8,29 +8,17 @@
 </head>
 <body>
     <a href="../../index.html" style="text-decoration: none;"><button style="cursor: pointer; min-width: none; min-height: 3em;">Home</button></a><br><br><br>
-    <input type="text" onchange="testOnChange()" oninput="testOnInput()" />
-    <h3 onmouseover="testOnMouseOver()" onmouseout="testOnMouseOut()">Test test test</h3>
+
+    <input type="text" onchange="eventHandler('change')" oninput="eventHandler('input')"/>
+    <h3 onmouseover="eventHandler('mouseOver')" onmouseout="eventHandler('mouseOut')">HOVER ME!</h3>
+
     <h2 id="info"></h2>
 
     <script>
-        function testOnLoad() {
-            document.getElementById('info').innerHTML += '<li>onload</li>';
-        }
+        var info = document.getElementById('info');
 
-        function testOnChange() {
-            document.getElementById('info').innerHTML += '<li>onchange</li>';
-        }
-
-        function testOnInput() {
-            document.getElementById('info').innerHTML += '<li>oninput</li>';
-        }
-
-        function testOnMouseOver() {
-            document.getElementById('info').innerHTML += '<li>onmouseover</li>';
-        }
-
-        function testOnMouseOut() {
-            document.getElementById('info').innerHTML += '<li>onmouseout</li>';
+        function eventHandler(change) {
+            info.innerHTML += `<li>${change}</li>`;
         }
     </script>
 </body>
