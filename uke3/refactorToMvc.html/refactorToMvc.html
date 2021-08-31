@@ -38,6 +38,15 @@
     <script>
         //model
         var turn = 0;
+        var pieceColor1 = "";
+        var pieceColor2 = "";
+        var pieceColor3 = "";
+        var pieceColor4 = "";
+        var pieceColor5 = "";
+        var pieceColor6 = "";
+        var pieceColor7 = "";
+        var pieceColor8 = "";
+        var pieceColor9 = "";
 
         //view
         updateView();
@@ -46,43 +55,43 @@
                 <table id="hoverTable">
                     <tr>
                         <td>
-                            <div onclick="changePiece(this)"></div>
+                            <div id="board" onclick="changePiece(this, 1)" style="background-color:${pieceColor1}"></div>
                         </td>
                         <td>
-                            <div onclick="changePiece(this)"></div>
+                            <div id="board" onclick="changePiece(this, 2)" style="background-color:${pieceColor2}"></div>
                         </td>
                         <td>
-                            <div onclick="changePiece(this)"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div onclick="changePiece(this)"></div>
-                        </td>
-                        <td>
-                            <div onclick="changePiece(this)"></div>
-                        </td>
-                        <td>
-                            <div onclick="changePiece(this)"></div>
+                            <div id="board" onclick="changePiece(this, 3)" style="background-color:${pieceColor3}"></div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <div onclick="changePiece(this)"></div>
+                            <div id="board" onclick="changePiece(this, 4)" style="background-color:${pieceColor4}"></div>
                         </td>
                         <td>
-                            <div onclick="changePiece(this)"></div>
+                            <div id="board" onclick="changePiece(this, 5)" style="background-color:${pieceColor5}"></div>
                         </td>
                         <td>
-                            <div onclick="changePiece(this)"></div>
+                            <div id="board" onclick="changePiece(this, 6)" style="background-color:${pieceColor6}"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="board" onclick="changePiece(this, 7)" style="background-color:${pieceColor7}"></div>
+                        </td>
+                        <td>
+                            <div id="board" onclick="changePiece(this, 8)" style="background-color:${pieceColor8}"></div>
+                        </td>
+                        <td>
+                            <div id="board" onclick="changePiece(this, 9)" style="background-color:${pieceColor9}"></div>
                         </td>
                     </tr>
             `;
         }
         //controller
-        function changePiece(boardPiece) {
+        function changePiece(boardPiece, value) {
             if (turn >= 9){
-                alert("no more turns")
+                alert("no more turns");
                 window.location.reload();
             }
             else if (boardPiece.style.backgroundColor === "red"){
@@ -91,19 +100,59 @@
             else if (boardPiece.style.backgroundColor === "blue"){
                 return;
             }
-            else if (turn % 2 == 0){
-                boardPiece.style.backgroundColor = "red";
-                turn++;
-                console.log('Turn: '+turn);
-                console.log('The number is odd')
+
+            var color;
+            if (turn % 2 == 0) {
+                color = 'red';
             }
             else {
-                boardPiece.style.backgroundColor = "blue";
+                color = 'blue';
+            }
+            if (value === 1){
+                pieceColor1 = color;
                 turn++;
                 console.log('Turn: '+turn);
-                console.log('The number is even')
-                
             }
+            if (value === 2){
+                pieceColor2 = color;
+                turn++;
+                console.log('Turn: '+turn);
+            }
+            if (value === 3){
+                pieceColor3 = color;
+                turn++;
+                console.log('Turn: '+turn);
+            }
+            if (value === 4){
+                pieceColor4 = color;
+                turn++;
+                console.log('Turn: '+turn);
+            }
+            if (value === 5){
+                pieceColor5 = color;
+                turn++;
+                console.log('Turn: '+turn);
+            }
+            if (value === 6){
+                pieceColor6 = color;
+                turn++;
+                console.log('Turn: '+turn);
+            }
+            if (value === 7){
+                pieceColor7 = color;
+                turn++;
+                console.log('Turn: '+turn);
+            }
+            if (value === 8){
+                pieceColor8 = color;
+                turn++;
+                console.log('Turn: '+turn);
+            }
+            if (value === 9){
+                pieceColor9 = color;
+                turn++;
+                console.log('Turn: '+turn);
+            }           
             updateView();
         }
     </script>

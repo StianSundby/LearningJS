@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVC Calculator</title>
+
+    <style>
+        div {
+            float: left;
+            background-color: beige;
+            width: 50px;
+            height: 50px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            vertical-align: middle;
+            font-family: helvetica;
+            font-size: 200%;
+            border: #bbbbaa solid 4px;
+            border-radius: 10px;
+        }
+
+        div.resultBox {
+            width: 344px;
+            text-align: right;
+        }
+
+        div.firstInRow {
+            clear: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="resultBox" class="resultBox"></div>
+
+    <div style="cursor: pointer;" class="firstInRow" onclick="addCharacter(7)">7</div>
+    <div style="cursor: pointer;" onclick="addCharacter(8)">8</div>
+    <div style="cursor: pointer;" onclick="addCharacter(9)">9</div>
+    <div style="cursor: pointer;" onclick="addCharacter('÷')">÷</div>
+
+    <div style="cursor: pointer;" class="firstInRow" onclick="addCharacter(4)">4</div>
+    <div style="cursor: pointer;" onclick="addCharacter(5)">5</div>
+    <div style="cursor: pointer;" onclick="addCharacter(6)">6</div>
+    <div style="cursor: pointer;" onclick="addCharacter('×')">×</div>
+
+    <div style="cursor: pointer;" class="firstInRow" onclick="addCharacter(1)">1</div>
+    <div style="cursor: pointer;" onclick="addCharacter(2)">2</div>
+    <div style="cursor: pointer;" onclick="addCharacter(3)">3</div>
+    <div style="cursor: pointer;" onclick="addCharacter('-')">-</div>
+
+    <div style="cursor: pointer;" class="firstInRow" onclick="addCharacter(0)">0</div>
+    <div style="cursor: pointer;" onclick="clearResult();">C</div>
+    <div style="cursor: pointer;" onclick="calculate()">=</div>
+    <div style="cursor: pointer;" onclick="addCharacter('+')">+</div>
+
+    <script>
+        //model
+        var resultBox = document.getElementById('resultBox');
+        var input = '';
+
+        //view
+        updateView();
+        function updateView(){
+            resultBox.innerHTML = input;
+        }
+
+        //controller
+        function addCharacter(x) {
+            input += x;
+            updateView();
+        }
+
+        function calculate() {
+            var calculation = input.replace('×', '*').replace('÷', '/');
+            input = eval(calculation);
+            updateView();
+        }
+
+        function clearResult() {
+            input = '';
+            updateView();
+        }
+    </script>
+</body>
+</html>

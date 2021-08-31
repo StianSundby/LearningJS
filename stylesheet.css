@@ -24,6 +24,10 @@ button:hover {
   width:100%;
 }
 
+#signature {
+  color: white;
+}
+
 a {
   color: white;
   text-decoration: none;
