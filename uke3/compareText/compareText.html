@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Text</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        //model - updates the view
+        var txt1 = 'Per';
+        var txt2 = 'Pål';
+        var txt3 = 'Espen';
+        var infoDiv = '';
+
+        //view - the user sees this:
+        findFirst();
+        function updateView(){
+            document.getElementById('app').innerHTML=`
+            <p>Change the text!</p>
+            <div>${infoDiv}</div>
+            <input type="text" id="txt1" oninput="txt1=this.value" value="${txt1}" /><br />
+            <input type="text" id="txt2" oninput="txt2=this.value" value="${txt2}" /><br />
+            <input type="text" id="txt3" oninput="txt3=this.value" value="${txt3}" /><br />
+            <button type="button" onclick="findFirst()">Oppdater</button>
+            `;
+        }
+
+
+        //controller - manipulates the model
+        function findFirst(){
+            infoDiv = '';
+
+            if (txt1 == txt2) infoDiv += 'Tekst 1 og 2 er like<br/>';
+            if (txt1 != txt2) infoDiv += '<del>Tekst 1 og 2 er like</del><br/>';
+
+            if (txt1 == txt3) infoDiv += 'Tekst 1 og 3 er like<br/>';
+            if (txt1 != txt3) infoDiv += '<del>Tekst 1 og 3 er like</del><br/>';
+            if (txt3 == txt2) infoDiv += 'Tekst 2 og 3 er like<br/>';
+            if (txt3 != txt2) infoDiv += '<del>Tekst 2 og 3 er like</del><br/>';
+
+            infoDiv.innerHTML += 'Om vi sorterer de tre tekstene, er denne den første:<br/>';
+            if (txt1 <= txt2) {
+                if (txt3 <= txt1) infoDiv += txt3;
+                else infoDiv += txt1;
+            } else {
+                if (txt3 <= txt2) infoDiv += txt3;
+                else infoDiv += txt2;
+            }
+            updateView();
+        }
+
+    </script>
+</body>
+</html>

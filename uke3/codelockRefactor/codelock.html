@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Codelock</title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="stylesheet.css" />
+    <!-- icon library -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+
+    <body>
+        <div id="app"></div>
+        <script>
+            //model
+            const correctCombination = [1,2,3,4]
+            let punchedInCombination = []
+            let display = document.getElementById("display");
+
+            //view
+            document.getElementById("app").innerHTML=`
+            <a href="../../index.html" style="text-decoration: none;"><button style="cursor: pointer; min-width: none; min-height: 3em;">Home</button><br><br><br>
+            <p>1234</p>
+            <div class="" id="display">Enter Combination</div>
+            <div class="gridContainer">
+                <div class="gridItem" id="b1" onclick="pushValuesIntoArray(1)">1</div>
+                <div class="gridItem" id="b2" onclick="pushValuesIntoArray(2)">2</div>
+                <div class="gridItem" id="b3" onclick="pushValuesIntoArray(3)">3</div>
+                <div class="gridItem" id="b4" onclick="pushValuesIntoArray(4)">4</div>
+                <div class="gridItem" id="b5" onclick="pushValuesIntoArray(5)">5</div>
+                <div class="gridItem" id="b6" onclick="pushValuesIntoArray(6)">6</div>
+                <div class="gridItem" id="b7" onclick="pushValuesIntoArray(7)">7</div>
+                <div class="gridItem" id="b8" onclick="pushValuesIntoArray(8)">8</div>
+                <div class="gridItem" id="b9" onclick="pushValuesIntoArray(9)">9</div>
+                <div class="gridItem material-icons icon-align" id="b0" onclick="removeValuesFromArray()">backspace</div>
+                <div class="gridItem met" id="bb" onclick="pushValuesIntoArray(0)">0</div>
+                <div class="gridItem material-icons icon-align" id="bE" onclick="validateCombination()">done</div>
+            </div>
+            `;
+
+            //controller
+            function validateCombination() {
+                for (let i = 0; i < correctCombination.length; i++) {
+                    if(punchedInCombination[i] === correctCombination[i] && i === 3) {
+                        display.innerHTML = "Correct!";
+                        punchedInCombination = [];
+                    } 
+                    else if(i === 3){
+                        display.innerHTML = "Error";
+                        displayError();
+                        punchedInCombination = [];
+                    }
+                    console.log(punchedInCombination)
+                }
+            }
+
+            function pushValuesIntoArray(numberValue) {
+                if (punchedInCombination.length < 4) {
+                    punchedInCombination.push(numberValue)
+                    display.innerHTML = punchedInCombination;
+                } 
+                else {
+                    displayError();
+                }
+            }
+
+            function displayError() {
+                display.classList.add("displayError");
+                setTimeout(function () {display.classList.remove("displayError");}, 250)
+            }
+        </script>
+    </body>
+</html>
+<!--      ___              ___
+         /\__\            /\  \
+        /:/ _/_          /::\  \
+       /:/ /\  \        /:/\ \  \
+      /:/ /::\  \      _\:\~\ \  \
+     /:/_/:/\:\__\    /\ \:\ \ \__\
+     \:\/:/ /:/  /    \:\ \:\ \/__/
+      \::/ /:/  /      \:\ \:\__\
+       \/_/:/  /  __    \:\/:/  /
+         /:/  /  /\_\    \::/  /
+         \/__/   \/_/     \/__/
+--> 
