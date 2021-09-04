@@ -19,6 +19,7 @@ button {
 }
 button:hover {
   background-color:rgb(83, 83, 83);
+  border: solid white 2px
 }
 .linkInsideButton {
   width:100%;

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUnit Text Formatting</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.9.2.css">
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.9.2.js"></script>
+    <script src="lib.js"></script>
+    <script>
+        //check for spaces and lowercase -> uppercase
+        QUnit.test("fix - 'terje'", function (assert) {
+            const actual = fixText('terje');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - 'terje '", function (assert) {
+            const actual = fixText('terje ');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - ' terje'", function (assert) {
+            const actual = fixText(' terje');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+
+        QUnit.test("fix - ' terje '", function (assert) {
+            const actual = fixText(' terje ');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        }); 
+
+
+        //check that all letters except first on is lowercase 
+        QUnit.test("fix - 'TERJE'", function (assert){
+            const actual = fixTextTwo('TERJE');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+        QUnit.test("fix - 'tERJE'", function (assert){
+            const actual = fixTextTwo('tERJE');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+
+            //Space first
+        QUnit.test("fix - ' TERJE'", function (assert){
+            const actual = fixTextTwo(' TERJE');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+        QUnit.test("fix - ' tERJE'", function (assert){
+            const actual = fixTextTwo(' tERJE');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+
+            //Space last
+        QUnit.test("fix - 'TERJE '", function (assert){
+            const actual = fixTextTwo('TERJE ');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+        QUnit.test("fix - 'tERJE '", function (assert){
+            const actual = fixTextTwo('tERJE ');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+
+            //Space first and last
+        QUnit.test("fix - ' TERJE '", function (assert){
+            const actual = fixTextTwo(' TERJE ');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+        QUnit.test("fix - ' tERJE '", function (assert){
+            const actual = fixTextTwo(' tERJE ');
+            const expected = 'Terje';
+            assert.equal(actual, expected);
+        });
+    </script>
+</body>
+</html>
