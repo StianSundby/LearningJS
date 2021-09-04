@@ -17,8 +17,9 @@
 <body>
     <div id="box">Test</div>
     <script>
-        //model
         var boxDiv = document.getElementById("box");
+        //model
+
         var lightOrDark=1;
 
         //view
@@ -40,7 +41,7 @@
         //controller
         function changeColor(selectObject){
             var value = selectObject.value;
-            console.log("backgroundcolor: "+value);
+            console.log("backgroundcolor: " + value);
             if (selectObject.value === "black"){
                 boxDiv.style.backgroundColor="black";
                 lightOrDark = 1;
@@ -61,15 +62,6 @@
                 boxDiv.style.backgroundColor="lightpink";
                 lightOrDark = 2;
             }
-            // if (selectObject.value === "black" || "darkblue"){
-            //     boxDiv.style.color="white";
-            //     console.log("text color: white");
-            //     console.log(selectObject.value);
-            // }
-            // else if (selectObject.value !== "black" || "darkblue"){
-            //     boxDiv.style.color="black";
-            //     console.log("text color: black");
-            // }
             textColor();
         }
         function textColor(){
@@ -86,17 +78,3 @@
 </body>
 </html>
 
-<!--
-Det fungerer ikke med if setningne på linje 66-74 - den setter "text color: white" uansett
-Jeg skjønner ikke hvorfor versjon 2 ikke fungerer, se notater der.
-querySelector() ?????
-
-har jeg løst den riktig?
-
-MVC spørsmål:
-Hvordan får jeg opp forslag i html?
-Jeg syntes det blir rotete, er det noe jeg gjør feil eller ikke har skjønt?
-Regler?
-Hvorfor?
-Hva er MVVM?
--->
