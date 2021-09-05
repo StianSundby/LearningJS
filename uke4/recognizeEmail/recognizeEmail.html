@@ -4,24 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUnit Recognize Email</title>
     <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.16.0.css">
-    <title>Recognize Email</title>  
 </head>
 <body>
     <div id="qunit"></div>
     <div id="qunit-fixture"></div>
     <script src="https://code.jquery.com/qunit/qunit-2.16.0.js"></script>
     <script src="lib.js"></script>
-
     <script>
-        QUnit.test("check - 'stiansundbyy@gmail.com'", function (assert) {
-            const actual = testEmail('stiansundbyy@gmail.com');
-            const expected = 'stiansundbyy@gmail.com';
+        ///////////////////////////////////////////////////////////////
+        //check for @
+        QUnit.test("check1 - 'addressemail.com'", function(assert){
+            const actual = checkEmailAt('addressemail.com');
+            const expected = 'Email must include @';
             assert.equal(actual, expected);
         });
-        QUnit.test("check - ' stiansundbyy@gmail.com'", function (assert) {
-            const actual = testEmail(' stiansundbyy@gmail.com');
-            const expected = 'stiansundbyy@gmail.com';
+
+        ///////////////////////////////////////////////////////////////
+        //check for space at the start
+        QUnit.test("check2 - ' address@email.com'", function(assert){
+            const actual = checkEmailSpace(' address@email.com');
+            const expected = 'Email can not include spaces';
+            assert.equal(actual, expected);
+        });
+        //check for space at the end
+        QUnit.test("check3 - 'address@email.com '", function(assert){
+            const actual = checkEmailSpace('address@email.com ');
+            const expected = 'Email can not include spaces';
+            assert.equal(actual, expected);
+        });
+        //check for space at both sides
+        QUnit.test("check4 - ' address@email.com '", function(assert){
+            const actual = checkEmailSpace(' address@email.com ');
+            const expected = 'Email can not include spaces';
+            assert.equal(actual, expected);
+        });
+
+        ///////////////////////////////////////////////////////////////
+        //check for period after the @
+        QUnit.test("check5 - 'address@emailcom'", function(assert){
+            const actual = checkEmailPeriod('address@emailcom');
+            const expected = 'Email does not contain a period after the @';
+            assert.equal(actual, expected);
+        });
+
+        ///////////////////////////////////////////////////////////////
+        QUnit.test("check6 - 'address@email.com'", function(assert){
+            const actual = checkEmailCorrect('address@email.com');
+            const expected = 'address@email.com';
             assert.equal(actual, expected);
         });
     </script>
