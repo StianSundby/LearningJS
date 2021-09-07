@@ -4,9 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic Tac Toe</title>
+    <title>Tic Tac Toe!</title>
 </head>
 <body>
-    
+    <div id="app"></div>
+    <script>
+        //declerations
+        let appDiv = document.getElementById('app');
+
+        //model
+        //array indexes    0   1   2   3   4   5   6   7   8
+        let boardPieces = ['', '', '', '', '', '', '', '', ''];
+
+        //view
+        show();
+        function show(){
+            let html = '';
+            for (let i = 0; i < 9; i++){
+                let firstInRow = i % 3;
+                if (firstInRow == 0){
+                    'firstInRow';
+                }
+                else if (firstInRow != 0){
+                    '';
+                }
+                html += `<div onclick="playerTurn(${i})" class="cell color${boardPieces[i]} ${firstInRow}">${boardPieces[i]}</div>`;
+            }
+            appDiv.innerHTML = html;
+
+        }
+
+        //controller
+        function playerTurn(index){
+            if (board[index] === ''){
+                board[index] = 'x';
+                superAdvancedArtificialIntelligence();
+            }
+            show();
+        }
+
+        function superAdvancedArtificialIntelligence(){
+            let noBoardPieces = Array.from(boardPieces.keys()).filter(i > boardPieces[i] === '');
+            // let noBoardPieces = boardPieces.indexOf('x');
+            if (noBoardPieces.length === 0){
+                return;
+            }
+            let pickARandomSlot = Math.floor(Math.random() * noBoardPieces.length);
+            let unfilledBoardPieces = noBoardPieces[pickARandomSlot];
+            boardPieces[unfilledBoardPieces] = 'o';
+            show();
+        }
+        
+        
+    </script>
 </body>
 </html>

@@ -1,0 +1,28 @@
+div {
+    user-select: none;
+}
+
+div.cell {
+    color: green;
+    background-color: lightgray;
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 2px;
+    font-size: 500%;
+    font-family: helvetica;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div.firstInRow{
+    clear: left;
+}
+
+div.colorx {
+    color: black;
+}
+
+div.coloro {
+    color: red;
+}
