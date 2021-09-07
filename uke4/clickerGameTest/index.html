@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clickergame</title>
+    <style>
+        div {
+            font-size: 300%;
+            user-select: none;
+        }
+    </style>
+    <script src="controller.js"></script>
+</head>
+<body>
+    <a href="../../index.html" style="text-decoration: none;"><button style="cursor: pointer; min-width: none; min-height: 3em;">Home</button></a><br><br><br>
+    <a href="unitTest.html" style="text-decoration: none;"><button style="cursor: pointer; min-width: none; min-height: 3em;">QUnit test page</button></a>
+
+    <h3>Click the smiley to gain points</h3>
+    <div id="app"></div>
+
+    <script>
+        // model
+        var points = 0;
+        var pointsPerClick = 1;
+        var smileyIndex = 0;
+        var cheatIndex = "";
+
+    // view
+    updateView();
+        function updateView() {
+            var smiley = smileyIndex == 0 ? '😀' : '😁';
+            document.getElementById('app').innerHTML = `
+                <div id="image" onclick="doClick()">${smiley}</div>
+                <div id="pointsInfo">${points}</div>
+                <div id="cheat">${cheatIndex}</div>
+                <button onclick="buyUpgrade()">Buy upgrade (10 points)</button><br>
+                <button onclick="iAmACheater()">Enable Cheats</button>
+            `;
+        }
+    </script>
+</body>
+</html>
