@@ -7,6 +7,41 @@
     <title>Puzzle</title>
 </head>
 <body>
-    
-</body>
+    <div id="app"></div>
+    <script>
+//DECLARATIONS
+        var appDiv = document.getElementById("app");
+
+//MODEL
+        var numbers1 = [];
+        var numbers2 = [];
+
+//VIEW
+        
+
+//CONTROLLER
+        //fill numbers1 with 0-7
+        for (let i = 0; i < 8; i++){
+            numbers1.push(i);
+        }
+
+        //Move elements from numbers1 to numbers2 in random order
+        while (numbers1.length){
+            let position = Math.random() * numbers1.length;
+            let element = numbers1.splice(position, 1)[0];
+            numbers2.push(element);
+            
+        }
+        elementReplace();
+        numbers2.toString();
+        numbers2.push('');
+        console.log(numbers2);
+
+        //Replace '0' with '8' in the Numbers2 array
+        function elementReplace(){
+            let ele = numbers2;
+            ele[ele.map((x, i) => [i, x]).filter(x => x[1] == 0)[0][0]] = 8;
+        }
+
+    </script>
 </html>

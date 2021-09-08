@@ -29,7 +29,7 @@
         //view
         show();
         function show() {
-            multipliedByDiv.innerHTML=`<h4>Multiplied ${sliderValue.value} times</h4>`;
+            multipliedByDiv.innerHTML=`<h4>Multiplied ${sliderValue.value-1} times</h4>`;
             let html = ``;
             for (let i = 0; i < multiplicationMatrix.length; i++) {
                 let number = multiplicationMatrix[i];

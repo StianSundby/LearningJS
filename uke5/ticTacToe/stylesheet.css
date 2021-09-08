@@ -1,9 +1,9 @@
 div {
     user-select: none;
+    cursor: pointer;
 }
 
 div.cell {
-    color: green;
     background-color: lightgray;
     width: 100px;
     height: 100px;
@@ -15,14 +15,14 @@ div.cell {
     vertical-align: middle;
 }
 
-div.firstInRow{
+div.firstInRow {
     clear: left;
 }
 
-div.colorx {
-    color: black;
+div.coloro {
+    color: blue;
 }
 
-div.coloro {
-    color: red;
+div.colorx {
+    color: green;
 }

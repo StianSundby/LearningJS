@@ -1,0 +1,6 @@
+.selectedBar {
+    fill: none;
+    stroke: #000000;
+    stroke-width: 0.25;
+    stroke-linejoin: square;
+}
