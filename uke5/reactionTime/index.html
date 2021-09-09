@@ -5,8 +5,167 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reaction time</title>
+    <style>
+        .gridContainer{
+            display: grid;
+            width: 22em;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.2em;
+            padding: 0.3em;
+            border: 0.2em solid black;
+            background-color: white;
+        }
+        .gridItem{
+            width: 4em;
+            height: 4em;
+            border-radius: 50%;
+            /* background-color: white; */
+            border: 1px solid black;
+            align-content: center;
+            justify-content: center;
+        }
+        .gridItem:hover{
+            background-color: rgb(230, 230, 230);
+            cursor: pointer;
+        }
+        .lightUp {
+            background-color: red;
+        }
+        .displayError {
+            animation-name: error;
+            animation-duration: 0.1s;
+            animation-iteration-count: 2;
+        }
+        @keyframes error {
+            25% { transform: translateX(-3px) }
+            75% { transform: translateX(3px) }
+        }
+    </style>
 </head>
 <body>
-    
+    <div id="app"></div>
+    <script>
+//DECLARATIONS
+        let appDiv = document.getElementById("app");
+
+//MODEL
+        let startOrReset = 0;
+        let startOrResetText = "Start";
+
+        let correctButton = '';
+        let scoreCounter=0;
+
+        let lastCircle = '';
+
+//VIEW
+        show();
+        function show(){
+            appDiv.innerHTML = `
+            <button id="startBtn" onclick="startGame()">${startOrResetText}</button>
+            <h3>Streak: ${scoreCounter}</h3><h3 id="wrongCorrect"><h3>
+            <div class="gridContainer">
+                <div class="gridItem" id="s1" onclick="selectedLampIndex(1)"></div>
+                <div class="gridItem" id="s2" onclick="selectedLampIndex(2)"></div>
+                <div class="gridItem" id="s3" onclick="selectedLampIndex(3)"></div>
+                <div class="gridItem" id="s4" onclick="selectedLampIndex(4)"></div>
+                <div class="gridItem" id="s5" onclick="selectedLampIndex(5)"></div>
+
+                <div class="gridItem" id="s6" onclick="selectedLampIndex(6)"></div>
+                <div class="gridItem" id="s7" onclick="selectedLampIndex(7)"></div>
+                <div class="gridItem" id="s8" onclick="selectedLampIndex(8)"></div>
+                <div class="gridItem" id="s9" onclick="selectedLampIndex(9)"></div>
+                <div class="gridItem" id="s10" onclick="selectedLampIndex(10)"></div>
+
+                <div class="gridItem" id="s11" onclick="selectedLampIndex(11)"></div>
+                <div class="gridItem" id="s12" onclick="selectedLampIndex(12)"></div>
+                <div class="gridItem" id="s13" onclick="selectedLampIndex(13)"></div>
+                <div class="gridItem" id="s14" onclick="selectedLampIndex(14)"></div>
+                <div class="gridItem" id="s15" onclick="selectedLampIndex(15)"></div>
+
+                <div class="gridItem" id="s16" onclick="selectedLampIndex(16)"></div>
+                <div class="gridItem" id="s17" onclick="selectedLampIndex(17)"></div>
+                <div class="gridItem" id="s18" onclick="selectedLampIndex(18)"></div>
+                <div class="gridItem" id="s19" onclick="selectedLampIndex(19)"></div>
+                <div class="gridItem" id="s20" onclick="selectedLampIndex(20)"></div>
+
+                <div class="gridItem" id="s21" onclick="selectedLampIndex(21)"></div>
+                <div class="gridItem" id="s22" onclick="selectedLampIndex(22)"></div>
+                <div class="gridItem" id="s23" onclick="selectedLampIndex(23)"></div>
+                <div class="gridItem" id="s24" onclick="selectedLampIndex(24)"></div>
+                <div class="gridItem" id="s25" onclick="selectedLampIndex(25)"></div>
+            </div>
+            `;
+        }
+//CONTROLLER
+        //Called when you click start game
+        function startGame(){
+            if (startOrReset === 0){
+                correctButton = Math.floor(Math.random() * 26);     //decides which circle is the correct one
+                console.log("correct button set to "+correctButton);
+                startOrReset = 1;                                   //make it so if you click the button again it resets
+                console.log("startOrReset value = "+startOrReset);
+                startOrResetText = "Reset";                         //change from "Start" to "Reset" inside the button
+                lightUpCircle();                         
+                show();
+            }
+            else if (startOrReset === 1){
+                window.location.reload(true);                       //refreshes the browser window
+            }
+            else if (startOrReset === 2){                       
+                correctButton = Math.floor(Math.random() * 26);     //assigns a new button as the correct one
+                console.log("correct button set to "+correctButton);
+                lightUpCircle();
+                show();
+            }
+            
+            
+        }
+
+        function lightUpCircle(){
+            console.log("lightUpCircle was called")
+            selectedDiv = document.getElementById("s"+correctButton);
+            console.log("The selectedDiv has an id of s"+correctButton);
+            
+            // selectedDiv.style.backgroundColor = "yellow";
+            selectedDiv.classList.add("lightUp");
+            console.log(document.getElementById("s"+correctButton))
+            console.log("^ did it get the 'lightUp' class?")
+            show();
+        }
+
+        function selectedLampIndex(lampIndex){
+            
+            if(correctButton == lampIndex){
+                wrongCorrect.innerHTML = "Correct! it took you"+"to click the circle!"
+                scoreCounter++;
+                startOrReset = 2; //make sure to just assign a new button and not reset the score
+                startGame();
+            }
+            else {
+                wrongCorrect.innerHTML = "Wrong circle"
+                scoreCounter = 0;           //resets score
+                displayError();             //calls the error animation
+                startOrReset = 0;           //.akes the button act as a Start button
+                startOrResetText = "Start"; //displays "Start" instead of "Reset"
+                show();
+            }
+        }
+        //returns a random integer between the (min, max) values of the parameters
+        function getRandomInt(min, max){
+            // min = Math.ceil(min);
+            // max = Math.floor(max);
+            // return Math.floor(Math.random() * (max - min) + min);
+            return 500;
+        }
+        //error animation, just adds and removes a class with the animation
+        function displayError() {
+            appDiv.classList.add("displayError");
+            setTimeout(function () {appDiv.classList.remove("displayError");}, 250)
+        }
+    </script>
 </body>
 </html>
+
+<!-- DET SOM IKKE FUNKER ER AT JEG LEGGER TIL EN CLASS I RIKGITG DIV
+     MEN SÅ CALLER JEG SHOW() SOM BYGGER DIVEN PÅ NYTT, SOM VIL SI
+     AT DEN FJERNER DEN CLASSEN JEG AKKURAT LA TIL -->

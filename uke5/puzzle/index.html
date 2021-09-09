@@ -58,8 +58,9 @@
                 let numberText = isBlank ? '' : number;
 
                 let firstInRow = i % 3 == 0 ? 'firstInRow' : '';
-                html +=
-                    ` <div class="square ${firstInRow}" onclick="clickedNumber(${i});">${numberText}</div>`;
+                html +=`
+                     <div class="square ${firstInRow}" onclick="clickedNumber(${i});">${numberText}</div>
+                `;
             }
             html += `<div style="clear: both;">Moves made: ${moveCounter}</div>`;
             document.getElementById('app').innerHTML = html;
