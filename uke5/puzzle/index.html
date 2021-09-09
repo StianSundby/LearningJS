@@ -5,43 +5,102 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Puzzle</title>
+
+    <style>
+        p.errorMessage {
+            color: red;
+        }
+
+        div.movemoveCounterer {
+            clear: left;
+        }
+
+        div.square {
+            color: blue;
+            background: lightblue;
+            padding: 18px;
+            margin: 10px;
+            border: solid green 7px;
+            width: 30px;
+            height: 30px;
+            float: left;
+        }
+
+        div.firstInRow {
+            clear: left;
+        }
+        #homeLink {
+            text-decoration: none;
+        }
+    </style>
+
 </head>
 <body>
+    <a href="../../index.html" id="homeLink"><button id="homeButton">Home</button></a>
+    <div><h3>Move the squares so they're in the correct order</h3></div>
     <div id="app"></div>
-    <script>
-//DECLARATIONS
-        var appDiv = document.getElementById("app");
 
+
+    <script>
 //MODEL
-        var numbers1 = [];
-        var numbers2 = [];
+        let moveCounter = 0;
+        let numbers1 = [];
+        let numbers2 = [];
+        let correctCombination = [1, 2, 3, 4, 5, 6, 7, 8, 0]
 
 //VIEW
-        
+        show();
+        function show() {
+            let html = '';
+            for (let i = 0; i < numbers2.length; i++) {
+                let number = numbers2[i];
+                let isBlank = number === 0;
+                let numberText = isBlank ? '' : number;
+
+                let firstInRow = i % 3 == 0 ? 'firstInRow' : '';
+                html +=
+                    ` <div class="square ${firstInRow}" onclick="clickedNumber(${i});">${numberText}</div>`;
+            }
+            html += `<div style="clear: both;">Moves made: ${moveCounter}</div>`;
+            document.getElementById('app').innerHTML = html;
+        }
 
 //CONTROLLER
-        //fill numbers1 with 0-7
-        for (let i = 0; i < 8; i++){
+        function clickedNumber(index) {
+            let blankIndex = findBlankIndex(index);
+            if (blankIndex == null) return;
+            moveCounter++;
+            numbers2[blankIndex] = numbers2[index];
+            numbers2[index] = 0;
+            console.log(numbers2)
+            if (numbers2.toString()===correctCombination.toString()){
+                alert("You win!");
+            }
+            show();
+        }
+
+        function findBlankIndex(index) {
+            for (let delta of [-3, -1, 1, 3]) {
+                let newIndex = index + delta;
+                if (newIndex < 0 || newIndex >= numbers2.length) continue;
+                if (numbers2[newIndex] === 0) {
+                    return newIndex;
+                }
+            }
+            return null;
+        }
+    ////////////////////////////////
+        for (let i = 0; i <9; i++){
             numbers1.push(i);
         }
 
-        //Move elements from numbers1 to numbers2 in random order
         while (numbers1.length){
             let position = Math.random() * numbers1.length;
             let element = numbers1.splice(position, 1)[0];
             numbers2.push(element);
-            
         }
-        elementReplace();
-        numbers2.toString();
-        numbers2.push('');
         console.log(numbers2);
-
-        //Replace '0' with '8' in the Numbers2 array
-        function elementReplace(){
-            let ele = numbers2;
-            ele[ele.map((x, i) => [i, x]).filter(x => x[1] == 0)[0][0]] = 8;
-        }
-
+        show();
     </script>
+</body>
 </html>
