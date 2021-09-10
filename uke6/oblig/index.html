@@ -30,9 +30,7 @@
             svgInnerHtml += createBar(numbers2[i], i + 1);
         }
         contentDiv.innerHTML = `
-            <svg id="chart" width="500" viewBox="0 0 80 60">
-                ${svgInnerHtml}
-            </svg><br/>
+            <svg id="chart" width="500" viewBox="0 0 80 60">${svgInnerHtml}</svg><br/>
             Chosen bar: <i>none</i>
             <br/>
             Value:
@@ -56,7 +54,8 @@
                     x="${x}" 
                     y="${y}" 
                     fill="${color}" 
-                    id="barNumber${barNo}">
+                    id="barNumber${barNo}"
+                    onclick="check(${barNo})">
                 </rect>`;
     }
 
@@ -68,13 +67,13 @@
     }
 
 //CONTROLLER
-        //fill numbers1 with 5 elements from 0-10
-        //runs at initialization, never again
+    //fill numbers1 with 5 elements from 0-10
+    //runs at initialization, never again
         for (let i = 0; i <5; i++){
             numbers1.push(i);
         }
-        //Move elements from numbers1 to numbers2 in random order
-        //runs at initialization, never again
+    //Move elements from numbers1 to numbers2 in random order
+    //runs at initialization, never again
         while (numbers1.length){
             let position = Math.random() * numbers1.length;
             let element = numbers1.splice(position, 1)[0];
@@ -83,8 +82,8 @@
         elementReplace();
         show();
 
-        //Replace '0' with a random number that is not a 0
-        //runs at initialization, never again
+    //Replace '0' with a random number that is not a 0
+    //runs at initialization, never again
         function elementReplace(){
             if (numbers2.includes(0)){
                 let ele = numbers2;
@@ -96,6 +95,11 @@
           else return;
         }
         
+        function check(value){
+            value = 1;
+            console.log("check"+value);
+        }
+
         function addNewBar(){
             if (inputValue >= 1 && inputValue != null && inputValue <= 10){
                 numbers2.push(inputValue);

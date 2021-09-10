@@ -1,12 +1,26 @@
 body{
   background-color: rgb(19, 19, 19);
 }
+
+.gridContainer{
+  display: inline-grid;
+  grid-template-columns:left right;
+}
+
+.gridItem1 {
+  grid-area: left;
+}
+
+.gridItem2 {
+  grid-area: right;
+}
+
 .title{
   margin-top: 1em;
-  text-align:left;
   width: 15em;
   color:white;
-  font-size: 2em;
+  font-size: 1.5em;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 button {
