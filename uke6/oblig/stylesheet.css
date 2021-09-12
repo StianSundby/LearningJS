@@ -1,6 +1,9 @@
-.selectedBar {
-    fill: none;
-    stroke: #000000;
-    stroke-width: 0.25;
-    stroke-linejoin: square;
+#container{
+    padding: 1em 1em 1em 1em;
+    margin: 1em 1em 1em 1em;
+}
+
+.selected {
+    stroke: rgb(0, 0, 0);
+    stroke-width: 0.5px;
 }

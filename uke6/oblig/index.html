@@ -5,128 +5,122 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheet.css">
-    <title>Columns</title>
-    
+    <?xml-stylesheet href="stylesheet.css" type="text/css"?>
+    <title>Chart</title>
 </head>
 <body>
-    <div id="content"></div>
-
-<script>
-        //DECLARATIONS
+    <div id="content">
+    </div>
+    
+    <script>
+//DECLARATIONS
         var contentDiv = document.getElementById('content');
-
-
+    
 //MODEL
-    let numbers1 = [];
-    let numbers2 = [];
-    let chosenBar; // Variabel for hvilken stolpe som er valgt
-    let inputValue; // Variabel for hva som er skrevet i input-feltet
-
+        let numbers1 = []; //dummy array
+        let numbers2 = []; //used array
+        let chosenBar = "none";
+        let inputValue;
+        let buttonDisable = "disabled";
+        
 //VIEW
-    show();
-    function show() {
-        let svgInnerHtml = '';
-        for (let i = 0; i < numbers2.length; i++) {
-            svgInnerHtml += createBar(numbers2[i], i + 1);
+        show();
+        function show() {
+            let svgInnerHtml = '';
+            for (let i = 0; i < numbers2.length; i++) {
+                svgInnerHtml += createBar(numbers2[i], i + 1);
+            }
+            contentDiv.innerHTML = `
+                <svg id="container" width="500" viewBox="0 0 80 60">${svgInnerHtml}</svg><br/>
+                Chosen bar: <i>${chosenBar}</i><br/>
+                Value: <input type="number" min="1" max="10" oninput="inputValue = this.value" />
+                <button onclick="addNewBar()">Add new bar</button>
+                <button ${buttonDisable}>Change bar</button><br />
+                <button ${buttonDisable}>Remove bar</button>
+                `;
         }
-        contentDiv.innerHTML = `
-            <svg id="chart" width="500" viewBox="0 0 80 60">${svgInnerHtml}</svg><br/>
-            Chosen bar: <i>none</i>
-            <br/>
-            Value:
-            <input type="number" min="1" max="10" oninput="inputValue = this.value"/>
-            <button onclick="addNewBar()">Add new bar</button>
-            <button disabled>Change chosen bar</button>
-            <button disabled>Remove chosen bar</button>
-            `;
-    }
 
-    function createBar(number, barNo) {
-        const width = 8;
-        const spacing = 2;
-        let x = (barNo - 1) * (width + spacing);
-        let height = number * 10;
-        let y = 60 - height;
-        let color = calcColor(1, 10, barNo);
-        return `<rect 
-                    width="${width}" 
-                    height="${height}"
-                    x="${x}" 
-                    y="${y}" 
-                    fill="${color}" 
-                    id="barNumber${barNo}"
-                    onclick="check(${barNo})">
-                </rect>`;
-    }
-
-    function calcColor(min, max, val) {
-        var minHue = 240, maxHue = 0;
-        var curPercent = (val - min) / (max - min);
-        var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
-        return colString;
-    }
-
-//CONTROLLER
-    //fill numbers1 with 5 elements from 0-10
-    //runs at initialization, never again
+        //fill numbers1 with 5 elements from 0-10
         for (let i = 0; i <5; i++){
             numbers1.push(i);
         }
-    //Move elements from numbers1 to numbers2 in random order
-    //runs at initialization, never again
+        //Move elements from numbers1 to numbers2 in random order
         while (numbers1.length){
-            let position = Math.random() * numbers1.length;
-            let element = numbers1.splice(position, 1)[0];
-            numbers2.push(element);
+            let arrayPosition = Math.random() * numbers1.length;
+            let newPosition = numbers1.splice(arrayPosition, 1)[0];
+            numbers2.push(newPosition);
         }
         elementReplace();
         show();
-
-    //Replace '0' with a random number that is not a 0
-    //runs at initialization, never again
+        //Replace '0' with a random number that is not a 0
         function elementReplace(){
             if (numbers2.includes(0)){
-                let ele = numbers2;
+                let array = numbers2;
                 let randomNumberReplace = Math.floor(Math.random() * 10) +1;
-                ele[ele.map((x, i) => [i, x]).filter(x => x[1] == 0)[0][0]] = randomNumberReplace; //???
-                console.log("replaced a 0 with "+randomNumberReplace)
+                array[array.map((x, i) => [i, x]).filter(x => x[1] == 0)[0][0]] = randomNumberReplace; //??????
+                console.log("Replaced a 0 with "+randomNumberReplace);
                 console.log(numbers2);
-            } 
-          else return;
+            }
         }
-        
-        function check(value){
-            value = 1;
-            console.log("check"+value);
+    
+        function createBar(number, barNo) {
+            const width = 8;
+            const spacing = 2;
+            let x = (barNo - 1) * (width + spacing);
+            let height = number * 10;
+            let y = 60 - height;
+            let color = calcColor(1, 10, barNo);
+            return `<rect 
+                        width="${width}" 
+                        height="${height}"
+                        x="${x}" y="${y}" 
+                        fill="${color}"
+                        id="barNumber${barNo}"
+                        onclick="selectBar(${barNo})"
+                        class=${chosenBar === barNo ? "selected" : ""}>
+                    </rect>`;
+        }
+    
+        function calcColor(min, max, val) {
+            var minHue = 240, maxHue = 0;
+            var curPercent = (val - min) / (max - min);
+            var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
+            return colString;
+        }
+    
+//CONTROLLER
+        function selectBar(selectedBar){
+            if (chosenBar === selectedBar){
+                chosenBar = "";
+                buttonDisable = "disabled";
+            }
+            else if (chosenBar !== selectBar){
+                chosenBar = selectedBar;
+                buttonDisable = "";
+            }
+            console.log("Bar number "+selectedBar+" was selected")
+            show();
         }
 
         function addNewBar(){
             if (inputValue >= 1 && inputValue != null && inputValue <= 10){
                 numbers2.push(inputValue);
                 show();
-                console.log("Added a new bar with a value of "+inputValue);
-                console.log(numbers2);
             }
-            else if (inputValue < 0){   //error message for when the entered value is a negative number
-                inputValue = undefined; //clear the input field
+            else if (inputValue < 0){
+                inputValue = undefined;
                 show();
-                setTimeout(function(){  //just to make sure the input field is cleared before the error pops up
-                    alert("The number you've entered is too small, please pick a positive number");
-                }, 100);
-            } 
-            else if (inputValue > 10){  //error message for when the entered value is too large
-                inputValue = undefined; //clear the input field
+                setTimeout(function(){alert("The number you've entered is too small, please pick a number above 0");}, 100);
+            }
+            else if (inputValue > 10){
+                inputValue = undefined;
                 show();
-                setTimeout(function(){  //just to make sure the input field is cleared before the error pops up
-                    alert("The number you've' entered is too large, please pick a number smaller than 10");
-                }, 100);
-            } 
-            else if (inputValue == null || undefined){  //error message for when there is no entered number
+                setTimeout(function(){alert("The number you've' entered is too large, please pick a number between 1 and 10");}, 100);
+            }
+            else if (inputValue == null || undefined){
                 show();
-                setTimeout(function(){  //just to make sure the input field is cleared before the error pops up
-                    alert("Please enter a number");
-                }, 100);
-            } 
+                setTimeout(function(){alert("Please enter a number");}, 100);
+            }
         }
     </script>
 </body>
