@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUnit Tests for Oblig</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.16.0.css">
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="https://code.jquery.com/qunit/qunit-2.16.0.js"></script>
+    <script src="index.html"></script>
+    <script>
+
+        var points;
+        var pointsPerClick;
+        var smileyIndex;
+        function updateView(){};
+
+        QUnit.module('click', function(){
+            QUnit.test('click increases points by 1', function (assert){
+                points = 0;
+                pointsPerClick = 1;
+                smileyIndex = 0;
+                doClick();
+
+                let actualPoints = points;
+                let expectedPoints = 1;
+                assert.equal(actualPoints, expectedPoints);
+
+                let actualSmileyIndex = smileyIndex;
+                let expectedSmileyIndex = 1;
+                assert.equal(actualSmileyIndex, expectedSmileyIndex);
+            });
+            QUnit.test('click increases points by 9', function(assert){
+                points = 0;
+                pointsPerClick = 9;
+                smileyIndex = 1;
+                doClick();
+
+                let actualPoints = points;
+                let expectedPoints = 9;
+                assert.equal(actualPoints, expectedPoints);
+
+                let actualSmileyIndex = smileyIndex;
+                let expectedSmileyIndex = 0;
+                assert.equal(actualSmileyIndex, expectedSmileyIndex);
+            });
+        });
+
+        QUnit.module('upgrade', function(){
+            QUnit.test('no upgrade', function(assert){
+                points = 0;
+                pointsPerClick = 1;
+                smileyIndex = 0;
+                buyUpgrade();
+
+                let actualPointsPerClick = pointsPerClick;
+                let expectedPointsPerClick = 1;
+                assert.equal(actualPointsPerClick, pointsPerClick);
+            });
+            QUnit.test('upgrade', function(assert){
+                points = 20;
+                pointsPerClick = 1;
+                smileyIndex = 0;
+                buyUpgrade();
+
+                let actualPointsPerClick = pointsPerClick;
+                let expectedPointsPerClick = 2;
+                assert.equal(actualPointsPerClick, pointsPerClick);
+            });
+        });
+
+        QUnit.module('cheats', function(){
+            QUnit.test('turn on cheats', function(assert){
+                points = 10;
+                pointsPerClick = 1;
+                smileyIndex = 0;
+                iAmACheater();
+
+                let actualPointsPerClick = pointsPerClick;
+                let expectedPointsPerClick = 10;
+                let actualPoints = points;
+                let expectedPoints = 100;
+                assert.equal(actualPointsPerClick, expectedPointsPerClick);
+                assert.equal(actualPoints, expectedPoints);
+            });
+        });
+    </script>
+</body>
+</html>
