@@ -51,19 +51,24 @@
     show();
     
     function elementReplace(){
-        for (let i = 0; i <5; i++) {numbers1.push(i);}
+        //fill dummy array with 5 indexes with a value of 1-10
+        for (let i = 0; i <5; i++){
+            numbers1.push(Math.floor(Math.random() * 10) +1);
+        }
+        //move indexes from dummy array to used array in random order
         while (numbers1.length){
             let arrayPosition = Math.random() * numbers1.length;
             let newPosition = numbers1.splice(arrayPosition, 1)[0];
-            numbers2.push(newPosition);
+            numbers2.push(newPosition);          
         }
-        if (numbers2.includes(0)){//Replace '0' with a random number that is not a 0
+        //Replace '0' with a random number that is not a 0
+        if (numbers2.includes(0)){
             let array = numbers2;
             let randomNumberReplace = Math.floor(Math.random() * 10) +1;
             array[array.map((x, i) => [i, x]).filter(x => x[1] == 0)[0][0]] = randomNumberReplace; //??????
             console.log("Replaced a 0 with "+randomNumberReplace);
-            console.log(numbers2);
         }
+        console.log(numbers2);
     }
 
     function createBar(number, barNumber){
@@ -95,16 +100,26 @@
         event = event || window.event;
         if (event.keyCode == 37){ //Left Arrow
             if ((chosenBar == "none" || null || undefined) && numbers2.length){
-                chosenBar = numbers2.length;}
-            else if (chosenBar === 1) {return;}
-            else {chosenBar = chosenBar - 1;}
+                chosenBar = numbers2.length;
+                chosenBarValueText = "It has a value of "
+                chosenBarValue = numbers2[chosenBar-1];}
+            else if (chosenBar === 1){return;}
+            else {
+                chosenBar = chosenBar - 1; 
+                chosenBarValue = numbers2[chosenBar-1];
+                chosenBarValueText = "It has a value of "}
             show();
         }
         else if (event.keyCode == 39){ //Right Arrow
             if ((chosenBar == "none" || null || undefined) && numbers2.length){
-                chosenBar = numbers2.length - numbers2.length + 1;}
+                chosenBar = numbers2.length - numbers2.length + 1;
+                chosenBarValueText = "It has a value of "
+                chosenBarValue = numbers2[chosenBar-1];}
             else if (chosenBar === 5){return;}
-            else {chosenBar = chosenBar + 1;}
+            else {
+                chosenBar = chosenBar + 1; 
+                chosenBarValue = numbers2[chosenBar-1];
+                chosenBarValueText = "It has a value of "}
             show();
         }
         else if (event.keyCode == 13){ //Enter
@@ -126,8 +141,7 @@
             chosenBarValue = numbers2[chosenBar-1];
             buttonDisable = "";
         }
-        console.log("Bar " +selectedBar +" was selected. Index " +(selectedBar-1))
-        console.log()
+        console.log("Bar " +selectedBar +" was selected. Index " +(selectedBar-1));
         show();
     }
 
@@ -151,6 +165,7 @@
 
     function removeBar(){
         numbers2.splice([chosenBar]-1, 1);
+        console.log(`Removed bar number ${chosenBar}, with an index of ${chosenBar-1}`);
         console.log(numbers2);
         clearChosenBar();
     }
