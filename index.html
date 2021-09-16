@@ -16,7 +16,7 @@
 
 <body class="gridContainer">
    <div class="gridItem1">
-      <div class="title"><b>M1 Week 1</b><br>Introduction to HTML</div>
+      <div class="title1"><b>M1 Week 1</b><br>Introduction to HTML</div>
       <table>
          <tr>
             <td><button><a class="linkInsideButton" href="uke1/oppgave1/side1.html">Basic HTML/CSS</a></button></td>
@@ -24,7 +24,7 @@
          </tr>
       </table>
 
-      <div class="title"><b>M1 Week 2</b><br>Javascript Basics</div>
+      <div class="title1"><b>M1 Week 2</b><br>Javascript Basics</div>
       <table>
          <tr>
             <td><button><a class="linkInsideButton" href="uke2/quiz/quiz.html">Quiz</a></button></td>
@@ -45,7 +45,7 @@
          </tr>
       </table>
 
-      <div class="title"><b>M1 Week 3</b><br>Model View Controller</div>
+      <div class="title1"><b>M1 Week 3</b><br>Model View Controller</div>
       <table>
          <tr>
             <td><button><a class="linkInsideButton" href="uke3/clickergame/clickergame.html">Clickergame</a></button></td>
@@ -61,7 +61,7 @@
          </tr>
       </table>
 
-      <div class="title"><b>M1 Week 4</b><br>Functions and QUnit testing</div>
+      <div class="title1"><b>M1 Week 4</b><br>Functions and QUnit testing</div>
       <table>
          <tr>
             <td><button><a class="linkInsideButton" href="uke4/textFormatting/index.html">Text Formatting</a></button></td>
@@ -70,7 +70,7 @@
          </tr>
       </table>
 
-      <div class="title"><b>M1 Week 5</b><br>Arrays and loops</div>
+      <div class="title1"><b>M1 Week 5</b><br>Arrays and loops</div>
       <table>
          <tr>
             <td><button><a class="linkInsideButton" href="uke5/multiplication/index.html">Multiplication Table</a></button></td>
@@ -79,7 +79,7 @@
             <td><button><a class="linkInsideButton" href="uke5/reactionTime/index.html">Reaction Time</a></button></td>
          </tr>
       </table>
-      <div class="title"><b>M1 Week 6</b><br>End of term assignment</div>
+      <div class="title1"><b>M1 Week 6</b><br>End of term assignment</div>
       <table>
          <tr>
             <td><button><a class="linkInsideButton" href="uke6/oblig/index.html">Column Diagram</a></button></td>
@@ -99,6 +99,213 @@
            /:/  /  /\_\    \::/  /
            \/__/   \/_/     \/__/
       </p>
+      <marquee behavior="scroll" direction="up" class="textScroller" loop="infinite" onclick="this.stop();" ondblclick="this.start();">
+         <pre>
+         <CODE>
+         &lt;!DOCTYPE html&gt;
+         &lt;html lang="en"&gt;
+         &lt;head&gt;
+             &lt;meta charset="UTF-8"&gt;
+             &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+             &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+             &lt;link rel="stylesheet" href="stylesheet.css"&gt;
+             &lt;?xml-stylesheet href="stylesheet.css" type="text/css"?&gt;
+             &lt;title&gt;Oblig&lt;/title&gt;
+         &lt;/head&gt;
+         &lt;body&gt;
+             &lt;a href="../../index.html" style="text-decoration: none;"&gt;&lt;button style="cursor: pointer; min-width: none; min-height: 3em;"&gt;Home&lt;/button>&lt;/a&gt;
+             &lt;a href="indexQUnit.html" style="text-decoration: none;"&gt;&lt;button style="cursor: pointer; min-width: none; min-height: 3em;"&gt;QUnit test page&lt;/button>&lt;/a&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+             &lt;div id="content"&gt;&lt;/div&gt;
+             
+             &lt;script&gt;
+         //DECLARATIONS
+             var contentDiv = document.getElementById('content');
+             
+         //MODEL
+             let numbers1 = []; //dummy array
+             let numbers2 = []; //used array
+             let chosenBar = "none";
+             let chosenBarValue = "";
+             let chosenBarValueText = "";
+             let inputValue;
+             let buttonDisable = "disabled";
+                 
+         //VIEW
+             show();
+             function show() {
+                 let svgInnerHtml = "";
+                 for (let i = 0; i &lt; numbers2.length; i++) {
+                     svgInnerHtml += createBar(numbers2[i], i + 1);
+                 }
+                 contentDiv.innerHTML = `
+                     &lt;svg id="container" width="500" viewBox="0 0 100 60"&gt;${svgInnerHtml}&lt;/svg>&lt;br/&gt;
+                     Chosen bar: &lt;i&gt;${chosenBar}&lt;/i&gt;&lt;br/&gt;
+                     ${chosenBarValueText} &lt;i&gt;${chosenBarValue}&lt;i&gt;&lt;br/&gt;
+                     Value: &lt;input type="number" 
+                                 min="1" 
+                                 max="10" 
+                                 oninput="inputValue = this.value" 
+                                 placeholder="Empty"/&gt;
+                     &lt;button onclick="addNewBar()"&gt;Add new bar&lt;/button&gt;
+                     &lt;button onclick="changeBar()"${buttonDisable}&gt;Change bar&lt;/button&gt;
+                     &lt;button onclick="removeBar()"${buttonDisable}&gt;Remove bar&lt;/button&gt;
+                     `;
+             }
+             elementReplace();
+             show();
+             
+             function elementReplace(){
+                 //fill dummy array with 5 indexes with a value of 1-10
+                 for (let i = 0; i &lt;5; i++){
+                     numbers1.push(Math.floor(Math.random() * 10) +1);
+                 }
+                 //move indexes from dummy array to used array in random order
+                 while (numbers1.length){
+                     let arrayPosition = Math.random() * numbers1.length;
+                     let newPosition = numbers1.splice(arrayPosition, 1)[0];
+                     numbers2.push(newPosition);          
+                 }
+                 //Replace '0' with a random number that is not a 0
+                 if (numbers2.includes(0)){
+                     let array = numbers2;
+                     let randomNumberReplace = Math.floor(Math.random() * 10) +1;
+                     array[array.map((x, i) =&gt; [i, x]).filter(x =&gt; x[1] == 0)[0][0]] = randomNumberReplace; //??????
+                     console.log("Replaced a 0 with "+randomNumberReplace);
+                 }
+                 console.log(numbers2);
+             }
+         
+             function createBar(number, barNumber){
+                 const width = 8;
+                 const spacing = 2;
+                 let x = (barNumber - 1) * (width + spacing);
+                 let height = number * 6;
+                 let y = 60 - height;
+                 let color = calcColor(1, 10, barNumber);
+                 return `&lt;rect 
+                             width="${width}" 
+                             height="${height}"
+                             x="${x+1}" y="${y}" 
+                             fill="${color}"
+                             id="barNumber${barNumber}"
+                             onclick="selectBar(${barNumber})"
+                             class=${chosenBar === barNumber ? "selected" : ""}&gt;
+                         &lt;/rect&gt;`;
+             }
+         
+             function calcColor(min, max, val) {
+                 var minHue = 240, maxHue = 0;
+                 var curPercent = (val - min) / (max - min);
+                 var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
+                 return colString;
+             }
+         //Key presses (LeftArrow, RightArrow, Enter, Delete)
+             document.onkeydown = function(event){
+                 event = event || window.event;
+                 if (event.keyCode == 37){ //Left Arrow
+                     if ((chosenBar == "none" || null || undefined) && numbers2.length){
+                         chosenBar = numbers2.length;
+                         chosenBarValueText = "It has a value of "
+                         chosenBarValue = numbers2[chosenBar-1];}
+                     else if (chosenBar === 1){return;}
+                     else {
+                         chosenBar = chosenBar - 1; 
+                         chosenBarValue = numbers2[chosenBar-1];
+                         chosenBarValueText = "It has a value of "}
+                     show();
+                 }
+                 else if (event.keyCode == 39){ //Right Arrow
+                     if ((chosenBar == "none" || null || undefined) && numbers2.length){
+                         chosenBar = numbers2.length - numbers2.length + 1;
+                         chosenBarValueText = "It has a value of "
+                         chosenBarValue = numbers2[chosenBar-1];}
+                     else if (chosenBar === 5){return;}
+                     else {
+                         chosenBar = chosenBar + 1; 
+                         chosenBarValue = numbers2[chosenBar-1];
+                         chosenBarValueText = "It has a value of "}
+                     show();
+                 }
+                 else if (event.keyCode == 13){ //Enter
+                     if(chosenBar != "none" || null || undefined) {changeBar();}
+                     else if (chosenBar == "none" || null || undefined) {addNewBar();}
+                 }
+                 else if (event.keyCode == 46){ //Delete
+                     if(chosenBar != "none" || null || undefined) {removeBar();}
+                     else {return;}
+                 }
+             }
+         
+         //CONTROLLER
+             function selectBar(selectedBar){
+                 if (chosenBar === selectedBar) {clearChosenBar();}
+                 else if (chosenBar !== selectedBar){
+                     chosenBar = selectedBar;
+                     chosenBarValueText = "It has a value of "
+                     chosenBarValue = numbers2[chosenBar-1];
+                     buttonDisable = "";
+                 }
+                 console.log("Bar " +selectedBar +" was selected. Index " +(selectedBar-1));
+                 show();
+             }
+         
+             function addNewBar(){
+                 if (inputValue &gt;= 1 && inputValue != null && inputValue &lt;= 10){
+                     numbers2.push(parseInt(inputValue));
+                     show();
+                 }else if (inputValue &lt;= 0){
+                     inputValue = undefined;
+                     show();
+                     setTimeout(function(){alert("The number you've entered is too small, please pick a number above 0");}, 100);
+                 }else if (inputValue &gt; 10){
+                     inputValue = undefined;
+                     show();
+                     setTimeout(function(){alert("The number you've entered is too large, please pick a number between 1 and 10");}, 100);
+                 }else if (inputValue == null || undefined){
+                     show();
+                     setTimeout(function(){alert("Please enter a number");}, 100);
+                 }
+             }
+         
+             function removeBar(){
+                 numbers2.splice([chosenBar]-1, 1);
+                 console.log(`Removed bar number ${chosenBar}, with an index of ${chosenBar-1}`);
+                 console.log(numbers2);
+                 clearChosenBar();
+             }
+         
+             function changeBar(){
+                 if (inputValue &gt;= 1 && inputValue != null && inputValue &lt;= 10){
+                     numbers2.splice([chosenBar]-1, 1, parseInt(inputValue));
+                     console.log(numbers2);
+                     clearChosenBar();
+                 }else if (inputValue &lt;= 0){
+                     inputValue = undefined;
+                     show();
+                     setTimeout(function(){alert("The number you've entered is too small, please pick a number above 0");}, 100);
+                 }else if (inputValue &gt; 10){
+                     inputValue = undefined;
+                     show();
+                     setTimeout(function(){alert("The number you've entered is too large, please pick a number between 1 and 10");}, 100);
+                 }else if (inputValue == null || undefined){
+                     show();
+                     setTimeout(function(){alert("Please enter a number");}, 100);
+                 }
+             }
+         
+             function clearChosenBar(){
+                 chosenBar = "none";
+                 chosenBarValue = "";
+                 chosenBarValueText = "";
+                 buttonDisable = "disabled";
+                 show();
+             }
+             &lt;/script&gt;
+         &lt;/body&gt;
+         &lt;/html&gt;
+         </CODE>
+         </pre>
+                 </marquee>
    </div>
 </body>
 </html>
