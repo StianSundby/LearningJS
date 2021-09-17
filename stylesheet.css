@@ -7,6 +7,15 @@ body{
   grid-template-columns:left right;
 }
 
+#iframe1{
+  opacity: 0;
+  transition: opacity 1.5s linear;
+}
+#trig1:hover + iframe{
+  opacity: 1;
+  transition: opacity 1.5s linear;
+}
+
 .textScroller{
   position:absolute; 
   left:40vw;
@@ -53,6 +62,10 @@ button:hover {
 }
 .linkInsideButton {
   width:100%;
+}
+#header{
+border-bottom: 4px solid white;
+padding-bottom: 1em;
 }
 
 #signature {
