@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Objects</title>
+</head>
+    <body>
+        <table id="tasksTable"></table>
+        <p>
+            <input id="taskDescription" type="text" placeholder="Add new task"/>
+            <input id="dateDescription" type="date">
+            <button onclick="addEntry()">Add</button><br>
+            <input id="personDescription" type="text" placeholder="Assign person"/>
+        </p>
+        <script>
+//MODEL
+        var tasks = [
+            {description: 'Become a CS student', isDone: true},
+            {description: 'Learn the basics', isDone: true},
+            {description: 'Learn to center a div', isDone: false},
+            {description: 'Find out who Jason is', isDone: false},
+            {description: 'Find out what JSON is', isDone: true},
+        ];
+        var people = [
+            {description: 'Christian'},
+            {description: 'Stian'},
+            {description: 'Kenneth'},
+            {description: 'Kristoffer'},
+            {description: 'Terje'},
+        ];
+        var dueDate = [
+            {description: new Date("2019-02-13").toLocaleDateString()},
+            {description: new Date("2019-02-13").toLocaleDateString()},
+            {description: new Date("2019-02-13").toLocaleDateString()},
+            {description: new Date("2019-02-13").toLocaleDateString()},
+            {description: new Date("2019-02-13").toLocaleDateString()},
+        ];
+        var doneDate =[
+            {description: "09-08-2021"},
+            {description: "25-08-2021"},
+            {description: ""},
+            {description: ""},
+            {description: "04-11-1923"},
+        ];     
+//CONTROLLER
+        var taskDescriptionInput = document.getElementById('taskDescription');
+        var personDescriptionInput = document.getElementById('personDescription');
+        var dateDescriptionInput = document.getElementById('dateDescription')
+
+        function addEntry(){
+            if (taskDescriptionInput.value && personDescriptionInput.value){
+                tasks.push({description: taskDescriptionInput.value, isDone: false});
+                taskDescriptionInput.value = '';
+                //
+                people.push({description: personDescriptionInput.value});
+                personDescriptionInput.value = '';
+                //
+                dueDate.push({description: dateDescriptionInput.value});
+                dateDescriptionInput.value = '';
+                //
+                doneDate.push({description: ''})
+                //
+                show();
+            }
+            else if (!taskDescriptionInput.value){alert("No task added")}
+            else if (!personDescriptionInput.value){alert("No person assigned")}
+            else {alert("This should not happen. Something has gone very wrong.")}
+        }
+
+//VIEW
+        var tasksTable = document.getElementById('tasksTable');
+
+        show();
+        function show() {
+            let html = `<tr>
+                            <th>Task</th>
+                            <th>Person</th>
+                            <th>Due</th>
+                            <th>Done</th>
+                            <th>Done date<th>
+                            <th>Edit</th>
+                        </tr>`;
+            if (tasks.length == people.length){
+                for (let i = 0; i < tasks.length; i++) {
+                html += createHtmlRow(i);
+                }
+                tasksTable.innerHTML = html;
+            }
+        }
+        function createHtmlRow(i) {
+            const task = tasks[i];
+            const person = people[i];
+            const dueDateArr = dueDate[i];
+            const doneDateArr = doneDate[i];
+            const checkedHtml = task.isDone ? 'checked="checked"' : '';
+            if (!task.editMode)
+                return `<tr>
+                            <td>${task.description}</td>
+                            <td>${person.description}</td>
+                            <td>${dueDateArr.description}</date>
+                            <td><input onchange="changeIsDone(this, ${i})" type="checkbox" ${checkedHtml} /></td>
+                            <td>${doneDateArr.description}</td>
+                            <td>
+                                <button onclick="deleteTask(${i})">Delete</button>
+                                <button onclick="editEntry(${i})">Edit</button>
+                            </td>
+                        </tr>`;
+            else return `<tr>
+                            <td><input id="editDescription1${i}" type="text" value="${task.description}"/></td>
+                            <td><input id="editDescription2${i}" type="text" value="${person.description}"/></td>
+                            <td><input id="editDescription3${i}" type="date" valye="${dueDateArr.description}"></td>
+                            <td><input onchange="changeIsDone(this, ${i})" type="checkbox" ${checkedHtml} /></td>
+                            <td><button onclick="updateTask(${i})">Save</button></td>
+                        </tr>`;
+        }
+    
+        function changeIsDone(checkbox, index) {
+            if (!checkbox.checked){
+                tasks[index].isDone = checkbox.checked;
+                doneDate[index].description = '';
+            }
+            else if (checkbox.checked){
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0
+                var yyyy = today.getFullYear();
+                today = dd + '-' + mm + '-' + yyyy;
+                tasks[index].isDone = checkbox.checked;
+                doneDate[index].description = today;
+            }
+            show();
+        }
+    
+        function deleteTask(index) {
+            tasks.splice(index, 1);
+            people.splice(index, 1);
+            dueDate.splice(index, 1);
+            doneDate.splice(index, 1);
+            show();
+        }
+    
+        function editEntry(index) {
+            tasks[index].editMode = true;
+            people[index].editMode = true;
+            dueDate[index].editMode = true;
+            show();
+        }
+    
+        function updateTask(index) {
+            const taskId = `editDescription1${index}`;
+            const inputTag = document.getElementById(taskId);
+            const task = tasks[index];
+            task.description = inputTag.value;
+            task.editMode = false;
+            //
+            const personId = `editDescription2${index}`;
+            const personTag = document.getElementById(personId);
+            const person = people[index];
+            person.description = personTag.value;
+            person.editMode = false;
+            //
+            const dueId = `editDescription3${index}`;
+            const dueTag = document.getElementById(dueId);
+            const due = dueDate[index];
+            due.description = dueTag.value;
+            due.editMode = false;
+            //
+            show();
+        }
+    </script>
+</body>
+</html>
