@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Labyrinth</title>
+</head>
+<body>
+    <input type="range" min="1" max="20" step="1" value="1" oninput="initializeModel(this.value); show();"/>
+    <div id="app"></div>
+
+    <script>
+        var maze = {
+                size: 2, //rows and columns
+                rows: [[
+                                                                                    //    wide    wide    wide    wide
+                        { tallCell: false, wideCell: false, openCell: false },      //  __________________________________
+                        { tallCell: false, wideCell: true, openCell: false },       // |_|_____|_|_____|_|_____|_|_____|_| wideCell = false
+                        { tallCell: false, wideCell: false, openCell: false },      // | |     | |     | |     | |     | | tall
+                        { tallCell: false, wideCell: true, openCell: false },       // | |open | |open | |open | |open | |
+                        { tallCell: false, wideCell: false, openCell: false },      // |_|_____|_|_____|_|_____|_|_____|_|
+                    ],                                                              // | |_____|_|_____|_|_____|_|_____|_|
+                    [                                                               // | |     | |     | |     | |     | | tall
+                        { tallCell: true, wideCell: false, openCell: false },       // | |     | |     | |     | |     | |
+                        { tallCell: true, wideCell: true },                         // |_|_____|_|_____|_|_____|_|_____|_|
+                        { tallCell: true, wideCell: false, openCell: false },       // |_|_____|_|_____|_|_____|_|_____|_|
+                        { tallCell: true, wideCell: true },                         // | |     | |     | |     | |     | | tall
+                        { tallCell: true, wideCell: false, openCell: false },       // | |     | |     | |     | |     | |
+                    ],                                                              // |_|_____|_|_____|_|_____|_|_____|_|
+                    [                                                               // |_|_____|_|_____|_|_____|_|_____|_|
+                        { tallCell: false, wideCell: false, openCell: false },      // | |     | |     | |     | |     | | tall
+                        { tallCell: false, wideCell: true, openCell: false },       // | |     | |     | |     | |     | |
+                        { tallCell: false, wideCell: false, openCell: false },      // |_|_____|_|_____|_|_____|_|_____|_|
+                        { tallCell: false, wideCell: true, openCell: false },       // |_|_____|_|_____|_|_____|_|_____|_| wideCell = false
+                        { tallCell: false, wideCell: false, openCell: false },
+                    ],
+                    [
+                        { tallCell: true, wideCell: false, openCell: false },   //short divider
+                        { tallCell: true, wideCell: true },                     //can be an open cell
+                        { tallCell: true, wideCell: false, openCell: false },   //short divider
+                        { tallCell: true, wideCell: true },                     //can be an open cell
+                        { tallCell: true, wideCell: false, openCell: false },   //short divider
+                    ],
+                    [
+                        { tallCell: false, wideCell: false, openCell: false },  //short divider
+                        { tallCell: false, wideCell: true, openCell: false },   //wide divider
+                        { tallCell: false, wideCell: false, openCell: false },  //short divider
+                        { tallCell: false, wideCell: true, openCell: false },   //wide divider
+                        { tallCell: false, wideCell: false, openCell: false },  //short divider
+                    ],
+                ]
+            };
+
+        show();
+        function show(){
+            document.getElementById("app").innerHTML = 
+                `<table>${maze.rows.map((row, rowIndex) => 
+                    `<tr>${row.map((column, columnIndex) =>
+                        `<td onclick="toggle(${rowIndex}, ${columnIndex})" class="${applyCSSClass(column)}"></td>`).join('')}
+                    </tr>`).join('')}
+                </table>`;
+        }
+
+        function applyCSSClass(cell){
+            if (cell.tallCell && cell.wideCell) return "room";      //if tallCell and wideCell are both true, it's a room.
+            const tallShort = cell.tallCell ? "tall " : "short ";   //if tallCell = true, add class "tall", else add class "short"
+            const wideSmall = cell.wideCell ? "wide " : "small ";   //if wideCell = true, add class "wide", else add class "small"
+            const wall = cell.openCell ? "noWall " : "wall ";       //if openCell = true, add class "noWall", else add class "wall"
+            return tallShort + wideSmall + wall;                    //return the three classes
+        }
+        
+        function initializeModel(mazeSize){                 //parameter is the value of the slider that called the function, 1-10
+            maze.rows = [];                                 //convert to array
+            for (let i = 0; i < mazeSize; i++){             //run as long as i is less than the amount of cells in our maze
+                maze.rows.push(mazeRow(mazeSize, false));   //returns 2 cells - 
+                maze.rows.push(mazeRow(mazeSize, true));    //returns 2 cells - 
+            }
+            maze.rows.push(mazeRow(mazeSize, false));       //close the row with a short cell
+            closeRow(0);
+        }
+
+        function closeRow(index){
+            const rowArray = maze.rows[index]; //the array is the index of maze.rows that is equal to the parameter. So it only contains 1 element.
+            for (let cell of rowArray){ //for each element in the array
+                cell.openCell = false;  //set openCell to false
+            }
+        }
+
+        function closeColumn(index){
+            for (let row of maze.rows){         //for each element in the array, which is basically the entire model
+                row[index].openCell = false;    //set openCell to false on the index that is equal to the parameter
+            }
+        }
+
+        function mazeRow(mazeSize, tallCell){           //amount of cells, which is 1-10, should it be tall or not - boolean value
+            const row = [];                             //initialize row as an array. This variable is not the same as maze.rows
+            for (let i = 0; i < mazeSize; i++){         //run as long as i is less than the amount of cells in our maze. Note that this is only 1 row and 1 column, it does not make the entire maze
+                row.push(createCell(tallCell, false));  //creates a tall cell that is short / tallCell = true, wideCell = false
+                row.push(createCell(tallCell, true));   //creates a tall cell that is wide
+            }
+            row.push(createCell(tallCell, false));      //closes with a tall cell that is short
+            return row;                                 //returns the array to the function that called it, with the created cells
+        }
+
+        function createCell(tallCell, wideCell){  //should it be tall, should it be wide - boolean values
+            if (tallCell === wideCell){           //if tallCell and wideCell are both either true or false,
+                return{tallCell, wideCell};       //return with the same values. Else, skip and decide if the cell is open or closed
+            }                                       
+            const openCell = Math.random() < 0.5; //random value, either 0 or 1 - if its larger than 0.5 it returns false, smaller it returns true
+            return{tallCell, wideCell, openCell}; //return three boolean values
+        }
+
+        function toggle(rowIndex, columnIndex){
+            const cell = maze.rows[rowIndex][columnIndex];
+            if (cell.openCell === undefined) return;
+            cell.openCell = !cell.openCell;
+            show();
+        }
+    </script>
+</body>
+</html>

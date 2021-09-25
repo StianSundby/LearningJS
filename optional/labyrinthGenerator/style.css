@@ -1,0 +1,13 @@
+table {border-spacing: 0;}
+td {background-color: white; padding: 0;}
+
+td.room {width: 40px; height: 40px;}
+
+td.wall {background-color: black; cursor: pointer;}
+td.noWall {background-color: white; cursor: pointer;}
+
+td.wide {width: 40px;}
+td.small {width: 10px;}
+
+td.tall {height: 40px;}
+td.short {height: 10px;}
