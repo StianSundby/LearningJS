@@ -1,0 +1,10 @@
+td{
+    width: 10px;
+    height: 10px;
+}
+td.snake{
+    background-color: black;
+}
+td.food{
+    background-color: red;
+}
