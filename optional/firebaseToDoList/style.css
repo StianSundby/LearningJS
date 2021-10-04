@@ -1,0 +1,210 @@
+/* EVERYTHING */
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+/* EVERYTHING V2 */
+body {
+	display: flex;
+	background-color: #383a3b;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	justify-content: center;
+}
+/* MAIN CONTAINER */
+.container {
+	width: 100%;
+	max-width: 700px;
+	min-height: 350px;
+	object-position: left;
+}
+/* header container */
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+/* header text */
+.title {
+	color: white;
+	letter-spacing: 10px;
+	font-size: 50px;
+	font-weight: bold;
+}
+
+/* ADD NEW ITEM */
+/* add new item container */
+.newTodo {
+	display: flex;
+	background-color: #5c5f61;
+	width: 100%;
+	height: 70px;
+	margin-top: 50px;
+	border-radius: 5px;
+}
+/* input field container */
+.newTodoInput {
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+}
+/* input field text*/
+.newTodoInput input {
+	width: 100%;
+	padding: 10px 0px;
+	font-size: 18px;
+	background-color: transparent;
+	color: #a5abad;
+	border: none;
+	outline: none;
+}
+/* input field */
+.newTodoInput form {
+	display: flex;
+	flex-grow: 1;
+}
+
+/* CHECKMARK */
+/* checkmark container */
+.check {
+	display: flex;
+	flex-basis: 90px;
+	justify-content: center;
+	align-items: center;
+}
+/* checkmark div*/
+.checkMark {
+	display: flex;
+	border: 2px solid #127db3;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.25s;
+}
+
+.checkMark img {
+	visibility: hidden;
+}
+.checkMark.checked img,
+.checkMark:hover img {
+	visibility: visible;
+}
+.checkMark:hover {
+	border-color: #a5abad;
+	background-color: #30627a;
+}
+.checkMark.checked {
+	background-color: #30627a;
+}
+.todoText.checked {
+	text-decoration: line-through;
+	color: #5c5f61;
+}
+
+/* DELETE ITEM */
+/* delete item container */
+.delete {
+	display: flex;
+	flex-basis: 90px;
+	justify-content: center;
+	align-items: center;
+	margin-left: auto;
+}
+/* delete item div*/
+.todoDelete {
+	display: flex;
+	border: 2px solid #127db3;
+	width: 30px;
+	height: 30px;
+	border-radius: 25%;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.25s;
+	right: 0;
+}
+
+.todoDelete:hover {
+	border-color: #a5abad;
+	background-color: brown;
+}
+
+.todoDelete img {
+	visibility: hidden;
+}
+.todoDelete:hover img {
+	visibility: visible;
+}
+
+/* ITEMS IN LIST */
+/* text inside item */
+.todoText {
+	display: flex;
+	color: #a5abad;
+	align-items: center;
+	font-size: 18px;
+}
+/* item container */
+.todoItem {
+	display: flex;
+	width: 100%;
+	height: 70px;
+	background-color: #494a4b;
+	border-bottom: 1px solid black;
+	cursor: pointer;
+	transition: all 0.25s ease;
+	transition-property: box-shadow, transform, border-color;
+}
+/* item container spacing */
+.todoItemsWrapper {
+	margin-top: 30px;
+	margin-bottom: 30px;
+	border-radius: 5px;
+	overflow: hidden;
+	background-color: #5c5f61;
+	box-shadow: 0px 2px 30px 0px rgba(0, 0, 0, 0.4);
+}
+
+/* BOTTOM BAR */
+/* bottom bar container */
+.todoItemsInfo {
+	display: flex;
+	width: 100%;
+	height: 70px;
+	background-color: #5c5f61;
+	color: #a5abad;
+	align-items: center;
+	padding-left: 30px;
+	padding-right: 30px;
+	justify-content: space-between;
+}
+/* active items counter */
+.itemStatuses {
+	display: flex;
+	justify-content: center;
+}
+/* all active completed tabs */
+.itemStatuses span {
+	padding: 0px 4px;
+	cursor: pointer;
+}
+/* clear completed */
+.itemsClear {
+	cursor: pointer;
+	text-align: end;
+}
+.itemsStatuses span:hover,
+.itemsClear:hover {
+	color: #d1d9db;
+	cursor: pointer;
+}
+.itemsStatuses .active {
+	color: #d1d9db;
+}
+.todoItem:hover {
+	transform: translateY(-2px);
+	box-shadow: 0px 0px 7px 0px #30627a;
+	border-color: #127db3;
+}
