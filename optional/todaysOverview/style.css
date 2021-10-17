@@ -1,0 +1,29 @@
+.parent {
+	display: grid;
+	grid-template-columns: 0.5fr repeat(5, 1fr);
+	grid-template-rows: 0.2fr repeat(4, 1fr) 0.2fr;
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+}
+
+.navbar {
+	grid-area: 1 / 1 / 2 / 7;
+}
+.menu {
+	grid-area: 2 / 1 / 6 / 2;
+}
+.weatherToday {
+	grid-area: 2 / 2 / 3 / 4;
+}
+.weatherTomorrow {
+	grid-area: 2 / 4 / 3 / 6;
+}
+.bills {
+	grid-area: 2 / 6 / 6 / 7;
+}
+.calendar {
+	grid-area: 3 / 2 / 6 / 6;
+}
+.footer {
+	grid-area: 6 / 1 / 7 / 7;
+}
