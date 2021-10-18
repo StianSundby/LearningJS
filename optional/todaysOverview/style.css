@@ -1,7 +1,19 @@
+html {
+	background: #fffffe;
+}
+h1 {
+	text-align: center;
+}
+p {
+	text-align: center;
+}
+div {
+	text-align: center;
+}
 .parent {
 	display: grid;
 	grid-template-columns: 0.5fr repeat(5, 1fr);
-	grid-template-rows: 0.2fr repeat(4, 1fr) 0.2fr;
+	grid-template-rows: 0.4fr repeat(4, 1fr) 0.2fr;
 	grid-column-gap: 0px;
 	grid-row-gap: 0px;
 }
@@ -21,7 +33,7 @@
 .bills {
 	grid-area: 2 / 6 / 6 / 7;
 }
-.calendar {
+.mainContent {
 	grid-area: 3 / 2 / 6 / 6;
 }
 .footer {
