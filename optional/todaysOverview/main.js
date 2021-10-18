@@ -3,20 +3,29 @@ const axios = require("axios");
 const longitude = "lon=10.45480342151002";
 const latitude = "lat=59.27569773646279";
 const altitude = "altitude=26";
+let temp = document.getElementById("temperature");
+let wind = document.getElementById("wind");
 
 axios
 	.get(
 		`https://api.met.no/weatherapi/locationforecast/2.0/compact?${longitude}&${latitude}&${altitude}`
 	)
 	.then(function (response) {
-		//Units
-		console.log(response.data.properties.meta.units.air_temperature);
-		console.log(response.data.properties.meta.units.precipitation_amount);
-		console.log(response.data.properties.meta.units.wind_from_direction);
-		console.log(response.data.properties.meta.units.wind_speed);
-
-		//Values
-		console.log(response.data.properties.timeseries[0]); //Array has a length of 85
+		console.log(response);
+		wind.innerHTML =
+			"Current temperature: " +
+			response.data.properties.timeseries[0].data.instant.details
+				.air_temperature +
+			" " +
+			response.data.properties.meta.units.air_temperature;
+		temp.innerHTML =
+			"Wind: " +
+			response.data.properties.timeseries[0].data.instant.details.wind_speed +
+			response.data.properties.meta.units.wind_speed +
+			" " +
+			response.data.properties.timeseries[0].data.instant.details
+				.wind_from_direction +
+			response.data.properties.meta.units.wind_from_direction;
 	})
 	.catch(function (error) {
 		console.log(error);
