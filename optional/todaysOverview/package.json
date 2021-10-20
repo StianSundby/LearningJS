@@ -1,16 +1,14 @@
 {
 	"name": "todaysoverview",
 	"version": "1.0.0",
-	"description": "Get data from weather API",
-	"main": "main.js",
+	"description": "Get data from Weather API",
+	"main": "./js/main.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"serve": "beefy main.js --live"
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "Stian Sundby",
 	"license": "ISC",
 	"dependencies": {
 		"axios": "^0.23.0"
-	},
-	"devDependencies": {}
+	}
 }
