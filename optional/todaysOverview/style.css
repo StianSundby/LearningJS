@@ -1,5 +1,5 @@
 html {
-	background: #fffffe;
+	background: gray;
 }
 h1 {
 	text-align: center;
@@ -24,10 +24,24 @@ div {
 .menu {
 	grid-area: 2 / 1 / 6 / 2;
 }
-.weatherToday {
+.weatherTodayContainer {
 	grid-area: 2 / 2 / 3 / 4;
 }
-.weatherTomorrow {
+.weatherToday,
+.weatherForecast {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	margin: 10px;
+	box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+	background-color: rgba(255, 255, 255, 0.15);
+	backdrop-filter: blur(5px);
+}
+.buttonContainer {
+	display: flex;
+	flex-direction: column;
+}
+.weatherForecastContainer {
 	grid-area: 2 / 4 / 3 / 6;
 }
 .bills {
@@ -38,4 +52,42 @@ div {
 }
 .footer {
 	grid-area: 6 / 1 / 7 / 7;
+}
+
+#todaysWeatherImage,
+#forecastWeatherImage {
+	width: 100px;
+	height: 100px;
+	cursor: pointer;
+}
+#todaysWeatherTemp,
+#forecastWeatherTemp {
+	font-size: 78px;
+	overflow: hidden;
+	align-self: center;
+}
+.tempChange {
+	width: 50px;
+	height: 51px;
+	font-size: 26px;
+	background: none;
+	border: none;
+	opacity: 25%;
+}
+.activeButton {
+	opacity: 100%;
+}
+.tempChange:hover {
+	cursor: pointer;
+	opacity: 100%;
+}
+#todaysDetails,
+#forecastDetails {
+	height: 100px;
+	text-align: left;
+	font-size: 20px;
+	line-height: 24pt;
+	flex-grow: 1;
+	cursor: default;
+	overflow: hidden;
 }

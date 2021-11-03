@@ -9,23 +9,58 @@
 	</head>
 
 	<body>
-		<div class="parent">
-			<div class="navbar"></div>
-			<div class="menu"></div>
-			<div class="weatherToday"></div>
-			<div class="weatherTomorrow"></div>
-			<div class="bills"></div>
-			<div class="mainContent">
-				<div id="temperature"></div>
-				<div id="wind"></div>
-				<button onclick="getTimeIndex()">Test</button>
+		<div id="app">
+			<div class="parent">
+				<div class="navbar"></div>
+				<div class="menu"></div>
+				<div class="weatherTodayContainer">
+					<div class="weatherToday">
+						<div id="todaysWeatherImage"></div>
+						<div id="todaysWeatherTemp"></div>
+						<div class="buttonContainer">
+							<button
+								onclick="convertTodaysTemp('C')"
+								class="tempChange activeButton"
+								id="celsiusButton"
+							>
+								°C
+							</button>
+							<button
+								onclick="convertTodaysTemp('F')"
+								class="tempChange"
+								id="fahrenheitButton"
+							>
+								°F
+							</button>
+						</div>
+						<div id="todaysDetails"></div>
+						<!-- Precipitation, Humidity, Wind -->
+					</div>
+				</div>
+				<div class="weatherForecastContainer">
+					<div class="weatherForecast">
+						<div id="forecastWeatherImage"></div>
+						<div id="forecastWeatherTemp"></div>
+						<div class="buttonContainer">
+							<button class="tempChange activeButton" id="celsiusButton">
+								°C
+							</button>
+							<button class="tempChange" id="fahrenheitButton">°F</button>
+						</div>
+						<div id="forecastDetails"></div>
+						<!-- Precipitation, Humidity, Wind -->
+					</div>
+				</div>
+				<div class="bills"></div>
+				<div class="mainContent"></div>
+				<div class="footer"></div>
 			</div>
-			<div class="footer"></div>
 		</div>
 
 		<!-- Import Axios -->
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 		<!-- Script for getting data from YR Api with Axios -->
-		<script src="js/getWeatherData.js"></script>
+		<script src="js/weatherData.js"></script>
+		<script src="js/alterWeatherData.js"></script>
 	</body>
 </html>
