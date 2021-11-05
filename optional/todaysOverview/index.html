@@ -14,6 +14,7 @@
 				<div class="navbar"></div>
 				<div class="menu"></div>
 				<div class="weatherTodayContainer">
+					<h1>Today</h1>
 					<div class="weatherToday">
 						<div id="todaysWeatherImage"></div>
 						<div id="todaysWeatherTemp"></div>
@@ -21,14 +22,14 @@
 							<button
 								onclick="convertTodaysTemp('C')"
 								class="tempChange activeButton"
-								id="celsiusButton"
+								id="todayCelsiusButton"
 							>
 								°C
 							</button>
 							<button
 								onclick="convertTodaysTemp('F')"
 								class="tempChange"
-								id="fahrenheitButton"
+								id="todayFahrenheitButton"
 							>
 								°F
 							</button>
@@ -38,14 +39,25 @@
 					</div>
 				</div>
 				<div class="weatherForecastContainer">
+					<h1>Tomorrow</h1>
 					<div class="weatherForecast">
 						<div id="forecastWeatherImage"></div>
 						<div id="forecastWeatherTemp"></div>
 						<div class="buttonContainer">
-							<button class="tempChange activeButton" id="celsiusButton">
+							<button
+								onclick="convertForecastTemp('C')"
+								class="tempChange activeButton"
+								id="forecastCelsiusButton"
+							>
 								°C
 							</button>
-							<button class="tempChange" id="fahrenheitButton">°F</button>
+							<button
+								onclick="convertForecastTemp('F')"
+								class="tempChange"
+								id="forecastFahrenheitButton"
+							>
+								°F
+							</button>
 						</div>
 						<div id="forecastDetails"></div>
 						<!-- Precipitation, Humidity, Wind -->

@@ -70,7 +70,7 @@ function getDate(dayOffset, hourOffset) {
 function getCurrentTimeIndex() {
 	for (let i = 0; i < responseTimeseries.length; i++) {
 		if (responseTimeseries[i].time == currentTime) {
-			console.log(responseTimeseries[i].time);
+			console.log("Data found for: " + responseTimeseries[i].time);
 			todayIndex = i;
 			setDataToday();
 			return;
@@ -80,7 +80,7 @@ function getCurrentTimeIndex() {
 	getDate(0, 1); //-1 hour fallback
 	for (let i = 0; i < responseTimeseries.length; i++) {
 		if (responseTimeseries[i].time == currentTime) {
-			console.log(responseTimeseries[i].time);
+			console.log("Data found for: " + responseTimeseries[i].time);
 			todayIndex = i;
 			setDataToday();
 			return;
@@ -90,7 +90,7 @@ function getCurrentTimeIndex() {
 	getDate(0, 3); //+1 hour fallback
 	for (let i = 0; i < responseTimeseries.length; i++) {
 		if (responseTimeseries[i].time == currentTime) {
-			console.log(responseTimeseries[i].time);
+			console.log("Data found for: " + responseTimeseries[i].time);
 			todayIndex = i;
 			setDataToday();
 			return;
@@ -100,7 +100,7 @@ function getCurrentTimeIndex() {
 	getDate(0, 0); //-2 hours fallback
 	for (let i = 0; i < responseTimeseries.length; i++) {
 		if (responseTimeseries[i].time == currentTime) {
-			console.log(responseTimeseries[i].time);
+			console.log("Data found for: " + responseTimeseries[i].time);
 			todayIndex = i;
 			setDataToday();
 			return;
@@ -110,7 +110,7 @@ function getCurrentTimeIndex() {
 	getDate(0, 4); //+2 hours fallback
 	for (let i = 0; i < responseTimeseries.length; i++) {
 		if (responseTimeseries[i].time == currentTime) {
-			console.log(responseTimeseries[i].time);
+			console.log("Data found for: " + responseTimeseries[i].time);
 			todayIndex = i;
 			setDataToday();
 			return;
@@ -120,9 +120,10 @@ function getCurrentTimeIndex() {
 	console.log("No data entry was found");
 }
 function getForecastIndex() {
+	console.log(responseTimeseries);
 	for (let i = 0; i < responseTimeseries.length; i++) {
 		if (responseTimeseries[i].time == forecastTime) {
-			console.log(responseTimeseries[i].time);
+			console.log("Data found for: " + responseTimeseries[i].time);
 			forecastIndex = i;
 			setDataForecast();
 			return;
@@ -132,7 +133,7 @@ function getForecastIndex() {
 	getDate(1, 1); //-1 hour fallback
 	for (let i = 0; i < responseTimeseries.length; i++) {
 		if (responseTimeseries[i].time == forecastTime) {
-			console.log(responseTimeseries[i].time);
+			console.log("Data found for: " + responseTimeseries[i].time);
 			forecastIndex = i;
 			setDataForecast();
 			return;
@@ -142,7 +143,7 @@ function getForecastIndex() {
 	getDate(1, 3); //+1 hour fallback
 	for (let i = 0; i < responseTimeseries.length; i++) {
 		if (responseTimeseries[i].time == forecastTime) {
-			console.log(responseTimeseries[i].time);
+			console.log("Data found for: " + responseTimeseries[i].time);
 			forecastIndex = i;
 			setDataForecast();
 			return;
@@ -152,7 +153,7 @@ function getForecastIndex() {
 	getDate(1, 0); //-2 hours fallback
 	for (let i = 0; i < responseTimeseries.length; i++) {
 		if (responseTimeseries[i].time == forecastTime) {
-			console.log(responseTimeseries[i].time);
+			console.log("Data found for: " + responseTimeseries[i].time);
 			forecastIndex = i;
 			setDataForecast();
 			return;
@@ -162,7 +163,7 @@ function getForecastIndex() {
 	getDate(1, 4); //+2 hours fallback
 	for (let i = 0; i < responseTimeseries.length; i++) {
 		if (responseTimeseries[i].time == forecastTime) {
-			console.log(responseTimeseries[i].time);
+			console.log("Data found for: " + responseTimeseries[i].time);
 			forecastIndex = i;
 			setDataForecast();
 			return;
@@ -206,7 +207,7 @@ function setDataToday() {
 
 function setDataForecast() {
 	weatherCodeForecast =
-		responseTimeseries[forecastIndex].data.next_1_hours.symbol_code;
+		responseTimeseries[forecastIndex].data.next_1_hours.summary.symbol_code;
 	forecastWeatherImageDiv.innerHTML = `<img src="./icons/icons/${weatherCodeForecast}.svg"></img>`;
 
 	forecastTemp =
