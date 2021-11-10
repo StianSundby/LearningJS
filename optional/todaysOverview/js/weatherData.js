@@ -1,9 +1,7 @@
 var todaysTempDiv = document.getElementById("todaysWeatherTemp");
 var forecastTempDiv = document.getElementById("forecastWeatherTemp");
-
 var todaysDetailsDiv = document.getElementById("todaysDetails");
 var forecastDetailsDiv = document.getElementById("forecastDetails");
-
 var todaysWeatherImageDiv = document.getElementById("todaysWeatherImage");
 var forecastWeatherImageDiv = document.getElementById("forecastWeatherImage");
 
@@ -120,7 +118,6 @@ function getCurrentTimeIndex() {
 	console.log("No data entry was found");
 }
 function getForecastIndex() {
-	console.log(responseTimeseries);
 	for (let i = 0; i < responseTimeseries.length; i++) {
 		if (responseTimeseries[i].time == forecastTime) {
 			console.log("Data found for: " + responseTimeseries[i].time);
@@ -172,6 +169,25 @@ function getForecastIndex() {
 
 	console.log("No data entry was found");
 }
+function getDirection(degrees) {
+	let directions = [
+		"North",
+		"North-East",
+		"East",
+		"South-East",
+		"South",
+		"South-West",
+		"West",
+		"North-West",
+	];
+	let index =
+		Math.round(((degrees %= 360) < 0 ? degrees + 360 : degrees) / 45) % 8;
+	//Degrees = degrees / 360
+	//If degrees is less than 0, degrees = degrees + 360 / 45
+	//Else if degrees is more than 0, degrees = degrees / 45
+	//Remove 8 from degrees until there is less than 8 left and return that number
+	return directions[index];
+}
 //________________________________________________________________________________SET DATA______________________________________________________________________________
 
 function setDataToday() {
@@ -185,11 +201,15 @@ function setDataToday() {
 		].data.instant.details.air_temperature.toFixed();
 	todaysTempDiv.innerHTML = todaysTemp;
 
+	windDegrees =
+		responseTimeseries[todayIndex].data.instant.details.wind_from_direction;
+	windDegrees = windDegrees.toFixed(); //remove decimals
+
 	todaysDetailsDiv.innerHTML =
 		"Precipitation: " +
 		responseTimeseries[todayIndex].data.next_1_hours.details
 			.precipitation_amount +
-		" " +
+		"" +
 		responseUnits.precipitation_amount +
 		"<br>" +
 		"Humidity: " +
@@ -201,8 +221,12 @@ function setDataToday() {
 		responseTimeseries[todayIndex].data.instant.details.wind_speed.toFixed() +
 		responseUnits.wind_speed +
 		" " +
-		responseTimeseries[todayIndex].data.instant.details.wind_from_direction +
-		responseUnits.wind_from_direction;
+		`<img src="./icons/icons/degree_arrow.svg" style="transform: rotate(${windDegrees}deg)">${getDirection(
+			windDegrees
+		)}</img>`;
+	// +
+	// responseTimeseries[todayIndex].data.instant.details.wind_from_direction +
+	// responseUnits.wind_from_direction;
 }
 
 function setDataForecast() {
@@ -213,8 +237,12 @@ function setDataForecast() {
 	forecastTemp =
 		responseTimeseries[
 			forecastIndex
-		].data.instant.details.air_temperature.toFixed();
+		].data.instant.details.air_temperature.toFixed(); //remove decimals
 	forecastTempDiv.innerHTML = forecastTemp;
+
+	windDegrees =
+		responseTimeseries[forecastIndex].data.instant.details.wind_from_direction;
+	windDegrees = windDegrees.toFixed(); //remove decimals
 
 	forecastDetailsDiv.innerHTML =
 		"Precipitation: " +
@@ -234,6 +262,7 @@ function setDataForecast() {
 		].data.instant.details.wind_speed.toFixed() +
 		responseUnits.wind_speed +
 		" " +
-		responseTimeseries[forecastIndex].data.instant.details.wind_from_direction +
-		responseUnits.wind_from_direction;
+		`<img src="./icons/icons/degree_arrow.svg" style="transform: rotate(${windDegrees}deg)">${getDirection(
+			windDegrees
+		)}</img>`;
 }

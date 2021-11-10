@@ -9,6 +9,8 @@
 	"author": "Stian Sundby",
 	"license": "ISC",
 	"dependencies": {
-		"axios": "^0.23.0"
+		"axios": "^0.23.0",
+		"fullcalendar": "^5.10.1",
+		"tui-calendar": "^1.15.0"
 	}
 }

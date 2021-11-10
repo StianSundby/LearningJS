@@ -4,8 +4,10 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="style.css" />
-		<title>Today</title>
+		<link rel="stylesheet" href="stylesheets/baseStyle.css" />
+		<link rel="stylesheet" href="stylesheets/weatherStyle.css" />
+		<link rel="stylesheet" href="stylesheets/calendarStyle.css" />
+		<title>Todays Overview</title>
 	</head>
 
 	<body>
@@ -64,15 +66,18 @@
 					</div>
 				</div>
 				<div class="bills"></div>
-				<div class="mainContent"></div>
+				<div class="mainContent">
+					<div id="calendar"></div>
+				</div>
 				<div class="footer"></div>
 			</div>
 		</div>
 
-		<!-- Import Axios -->
+		<!-- Axios & Weather API-->
 		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-		<!-- Script for getting data from YR Api with Axios -->
 		<script src="js/weatherData.js"></script>
 		<script src="js/alterWeatherData.js"></script>
+		<!-- Calendar -->
+		<script src="js/calendar.js"></script>
 	</body>
 </html>
